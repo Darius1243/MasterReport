@@ -1,0 +1,1 @@
+export { DeleteButtonWithDialog } from './DeleteButtonWithDialog'

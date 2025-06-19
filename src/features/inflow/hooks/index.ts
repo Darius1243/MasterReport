@@ -1,0 +1,1 @@
+export { useGetIsVisibleInflow } from './useGetIsVisibleInflow'

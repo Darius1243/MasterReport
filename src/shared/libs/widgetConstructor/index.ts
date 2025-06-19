@@ -1,0 +1,5 @@
+export { getNewBlocks } from './getNewBlocks'
+export { getNewWidget } from './getNewWidget'
+export { processBlockConstructor } from './processBlockConstructor'
+export { processWidgetConstructor } from './processWidgetConstructor'
+export { widgetConstructorInLoader } from './widgetConstructorInLoader'

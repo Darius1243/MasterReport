@@ -1,0 +1,1 @@
+export { MuiAvatar } from './MuiAvatar'

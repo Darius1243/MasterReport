@@ -1,0 +1,1 @@
+export { InputFieldNumericFormat } from './InputFieldNumericFormat'

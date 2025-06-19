@@ -1,0 +1,1 @@
+export { MuiModal } from './MuiModal'

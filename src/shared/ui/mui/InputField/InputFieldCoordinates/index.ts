@@ -1,0 +1,1 @@
+export { InputFieldCoordinates } from './InputFieldCoordinates'
