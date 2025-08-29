@@ -1,62 +1,42 @@
+import { useMutationEntity } from '../useMutationEntity'
 import {
-	DeleteFacilityMutationHookResult,
-	GetAllFacilitiesDocument,
-	useCreateFacilityMutation,
-	useDeleteFacilityMutation,
-	useGetFacilityByIdQuery,
-	useUpdateFacilityMutation,
-} from '@/generated/graphql'
-import { showToastError, showToastPromise } from '@/shared/ui/toast'
-import { useEffect } from 'react'
-
-const REFETCH_QUERIES = [{ query: GetAllFacilitiesDocument }]
+	GET_FACILITY_BY_ID,
+	CREATE_FACILITY,
+	UPDATE_FACILITY,
+	DELETE_FACILITY,
+	GET_ALL_FACILITIES,
+} from '@/entities/user/api/facilityQueries'
 
 export function useMutationFacility(id?: number) {
-	const facilityQuery = useGetFacilityByIdQuery({
-		variables: { id: id as number },
-		skip: id == undefined,
-	})
-
-	const [createFacilityMutation, createFacilityResult] =
-		useCreateFacilityMutation({
-			refetchQueries: REFETCH_QUERIES,
-		})
-	const [updateFacilityMutation, updateFacilityResult] =
-		useUpdateFacilityMutation({
-			refetchQueries: REFETCH_QUERIES,
-		})
-	const [deleteFacilityMutation, deleteFacilityResult] =
-		useDeleteFacilityMutation({
-			refetchQueries: REFETCH_QUERIES,
-		})
-
-	useEffect(() => {
-		if (facilityQuery.error) {
-			showToastError('Ошибка при загрузке данных объекта', facilityQuery.error)
-		}
-	}, [facilityQuery.error])
-
-	const handleDeleteFacility: DeleteFacilityMutationHookResult[0] = async (
-		...args
-	) => {
-		return showToastPromise(deleteFacilityMutation(...args), {
-			pending: 'Удаление объекта...',
-			success: 'Объект успешно удален!',
-			error: 'Ошибка при удалении объекта.',
-		})
-	}
+	const {
+		entityQuery,
+		create,
+		update,
+		deleteItem,
+		createResult,
+		updateResult,
+		deleteResult,
+		isLoading,
+	} = useMutationEntity(
+		{
+			getByIdQuery: GET_FACILITY_BY_ID,
+			createQuery: CREATE_FACILITY,
+			updateQuery: UPDATE_FACILITY,
+			deleteQuery: DELETE_FACILITY,
+			refetchQuery: GET_ALL_FACILITIES,
+			entityNameRu: 'объекта',
+		},
+		id
+	)
 
 	return {
-		facility: facilityQuery,
-		create: createFacilityMutation,
-		update: updateFacilityMutation,
-		deleteItem: handleDeleteFacility,
-		createFacilityResult,
-		updateFacilityResult,
-		deleteFacilityResult,
-		isLoading:
-			createFacilityResult.loading ||
-			updateFacilityResult.loading ||
-			deleteFacilityResult.loading,
+		facility: entityQuery,
+		create,
+		update,
+		deleteItem,
+		createFacilityResult: createResult,
+		updateFacilityResult: updateResult,
+		deleteFacilityResult: deleteResult,
+		isLoading,
 	}
 }

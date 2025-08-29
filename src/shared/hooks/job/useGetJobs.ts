@@ -1,13 +1,7 @@
-import { useGetAllJobsQuery } from '@/generated/graphql'
-import { showToastError } from '@/shared/ui/toast'
-import { useEffect } from 'react'
+import { useGetEntities } from '../useGetEntities'
+import { GET_ALL_JOBS } from '@/entities/user/api/jobQueries'
+import { GetAllJobsQuery } from '@/generated/graphql'
 
 export function useGetJobs() {
-	const { data, error, ...rest } = useGetAllJobsQuery()
-
-	useEffect(() => {
-		if (error) showToastError('Ошибка при загрузке списка видов работ', error)
-	}, [error])
-
-	return { ...rest, data: data?.jobs ?? [], error }
+	return useGetEntities<GetAllJobsQuery>(GET_ALL_JOBS, 'jobs')
 }

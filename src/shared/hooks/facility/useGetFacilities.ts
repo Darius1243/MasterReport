@@ -1,13 +1,7 @@
-import { useGetAllFacilitiesQuery } from '@/generated/graphql'
-import { showToastError } from '@/shared/ui/toast'
-import { useEffect } from 'react'
+import { useGetEntities } from '../useGetEntities'
+import { GET_ALL_FACILITIES } from '@/entities/user/api/facilityQueries'
+import { GetAllFacilitiesQuery } from '@/generated/graphql'
 
 export function useGetFacilities() {
-	const { data, error, ...rest } = useGetAllFacilitiesQuery()
-
-	useEffect(() => {
-		if (error) showToastError('Ошибка при загрузке списка объектов', error)
-	}, [error])
-
-	return { ...rest, data: data?.facilities ?? [], error }
+	return useGetEntities<GetAllFacilitiesQuery>(GET_ALL_FACILITIES, 'facilities')
 }

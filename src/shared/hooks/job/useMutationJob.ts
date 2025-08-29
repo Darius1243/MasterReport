@@ -1,57 +1,42 @@
+import { useMutationEntity } from '../useMutationEntity'
 import {
-	DeleteJobMutationHookResult,
-	GetAllJobsDocument,
-	useCreateJobMutation,
-	useDeleteJobMutation,
-	useGetJobByIdQuery,
-	useUpdateJobMutation,
-} from '@/generated/graphql'
-import { showToastError, showToastPromise } from '@/shared/ui/toast'
-import { useEffect } from 'react'
-
-const REFETCH_QUERIES = [{ query: GetAllJobsDocument }]
+	GET_JOB_BY_ID,
+	CREATE_JOB,
+	UPDATE_JOB,
+	DELETE_JOB,
+	GET_ALL_JOBS,
+} from '@/entities/user/api/jobQueries'
 
 export function useMutationJob(id?: number) {
-	const jobQuery = useGetJobByIdQuery({
-		variables: { id: id as number },
-		skip: id == undefined,
-	})
-
-	const [createJobMutation, createJobResult] = useCreateJobMutation({
-		refetchQueries: REFETCH_QUERIES,
-	})
-	const [updateJobMutation, updateJobResult] = useUpdateJobMutation({
-		refetchQueries: REFETCH_QUERIES,
-	})
-	const [deleteJobMutation, deleteJobResult] = useDeleteJobMutation({
-		refetchQueries: REFETCH_QUERIES,
-	})
-
-	useEffect(() => {
-		if (jobQuery.error) {
-			showToastError('Ошибка при загрузке данных вида работ', jobQuery.error)
-		}
-	}, [jobQuery.error])
-
-	const handleDeleteJob: DeleteJobMutationHookResult[0] = async (...args) => {
-		return showToastPromise(deleteJobMutation(...args), {
-			pending: 'Удаление вида работ...',
-			success: 'Вид работ успешно удален!',
-			error: 'Ошибка при удалении вида работы.',
-		})
-	}
+	const {
+		entityQuery,
+		create,
+		update,
+		deleteItem,
+		createResult,
+		updateResult,
+		deleteResult,
+		isLoading,
+	} = useMutationEntity(
+		{
+			getByIdQuery: GET_JOB_BY_ID,
+			createQuery: CREATE_JOB,
+			updateQuery: UPDATE_JOB,
+			deleteQuery: DELETE_JOB,
+			refetchQuery: GET_ALL_JOBS,
+			entityNameRu: 'вида работ',
+		},
+		id
+	)
 
 	return {
-		job: jobQuery,
-		create: createJobMutation,
-		update: updateJobMutation,
-		deleteItem: handleDeleteJob,
-		createJobResult,
-		updateJobResult,
-		deleteJobResult,
-		isLoading:
-			createJobResult.loading ||
-			updateJobResult.loading ||
-			deleteJobResult.loading,
+		job: entityQuery,
+		create,
+		update,
+		deleteItem,
+		createJobResult: createResult,
+		updateJobResult: updateResult,
+		deleteJobResult: deleteResult,
+		isLoading,
 	}
 }

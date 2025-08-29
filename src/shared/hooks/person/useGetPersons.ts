@@ -1,13 +1,7 @@
-import { useGetAllPersonsQuery } from '@/generated/graphql'
-import { showToastError } from '@/shared/ui/toast'
-import { useEffect } from 'react'
+import { useGetEntities } from '../useGetEntities'
+import { GET_ALL_PERSONS } from '@/entities/user/api/personQueries'
+import { GetAllPersonsQuery } from '@/generated/graphql'
 
 export function useGetPersons() {
-	const { data, error, ...rest } = useGetAllPersonsQuery()
-
-	useEffect(() => {
-		if (error) showToastError('Ошибка при загрузке списка пользователей', error)
-	}, [error])
-
-	return { ...rest, data: data?.persons ?? [], error }
+	return useGetEntities<GetAllPersonsQuery>(GET_ALL_PERSONS, 'persons')
 }
