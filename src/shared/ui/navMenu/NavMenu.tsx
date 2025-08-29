@@ -1,4 +1,5 @@
 import { getIcon } from '@/shared/libs/getIcon'
+import { NAV_MENU_ITEMS } from '@/shared/model/constants'
 import { TypeIcon } from '@/shared/model/types'
 import Box from '@mui/material/Box'
 import List, { ListProps } from '@mui/material/List'
@@ -27,12 +28,6 @@ interface ListItemLinkProps extends ListItemProps {
 	iconSx?: SxProps<Theme>
 	children?: React.ReactNode
 }
-
-const NAV_MENU_ITEMS = [
-	{ primary: 'home', to: '/', icon: 'HomeIcon' },
-	{ primary: 'inflow', to: '/inflow', icon: 'InflowIcon' },
-	{ primary: 'outflow', to: '/outflow', icon: 'OutflowIcon' },
-]
 
 export const NavMenu = () => {
 	const currentPathSegment = useLocation().pathname.split('/')[1] || ''

@@ -1,9 +1,16 @@
 import react from '@vitejs/plugin-react'
+import type { ServerOptions } from 'https'
 import path from 'path'
 import { defineConfig } from 'vite'
+import mkcert from 'vite-plugin-mkcert'
 
 export default defineConfig({
-	plugins: [react()],
+	plugins: [react(), mkcert()],
+	server: {
+		https: {} as ServerOptions,
+		host: true,
+		port: 5173,
+	},
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, './src'),

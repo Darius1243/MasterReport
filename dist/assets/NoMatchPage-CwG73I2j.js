@@ -1,0 +1,1 @@
+import{j as r,L as s}from"./index-BvvL1rGo.js";const i=()=>r.jsxs("div",{children:[r.jsx("h2",{children:"Страница не найдена!"}),r.jsx("p",{children:r.jsx(s,{to:"../",children:"Перейдите на главную страницу"})})]});export{i as NoMatchPage};

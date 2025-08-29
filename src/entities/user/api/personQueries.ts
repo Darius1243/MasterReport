@@ -30,7 +30,7 @@ export const CREATE_PERSON = gql`
 `
 
 export const UPDATE_PERSON = gql`
-	mutation UpdatePerson($id: Int!, $data: PersonUpdateInput!) {
+	mutation UpdatePerson($id: Int!, $data: PersonUpdateSimpleInput!) {
 		updatePerson(id: $id, data: $data) {
 			id
 			email
@@ -52,6 +52,8 @@ export const GET_PERSONS_WITH_STATISTICS = gql`
 			name
 			totalInflowAmount
 			inflowIds
+			totalOutflowAmount
+			outflowIds
 		}
 	}
 `

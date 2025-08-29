@@ -33,7 +33,7 @@ export const ResponsiveGrid = ({
 	sxCardContent = {},
 	styleCardContent = {},
 	label = undefined,
-	minWidth = '300px',
+	minWidth = '200px',
 	isDisplayNone = false,
 	rootComponent = undefined,
 	children,
@@ -52,7 +52,7 @@ export const ResponsiveGrid = ({
 				flex: item ? `1 1 ${minWidth}` : 1,
 
 				// container
-				gap: _container ? 2 : 0,
+				gap: _container ? 1 : 0,
 				overflow: _container ? 'auto' : 'hidden',
 				display: isDisplayNone ? 'none' : container ? 'flex' : 'block',
 				flexWrap: container ? 'wrap' : 'nowrap',
@@ -61,7 +61,7 @@ export const ResponsiveGrid = ({
 					(container && item) || componentType === 'table'
 						? BORDER_RADIUS
 						: undefined,
-				p: _item || _container ? 1 : 0,
+				p: _item ? 1 : 0,
 				boxShadow: 'none',
 				...sx,
 			}}
@@ -81,7 +81,7 @@ export const ResponsiveGrid = ({
 							flex: componentType === 'form' ? '0 1 400px' : 1,
 							display: 'flex',
 							flexDirection: 'column',
-							gap: 2,
+							gap: 1,
 							width: '100%',
 							height: 'fit-content',
 							...sxCardContent,

@@ -1,5 +1,7 @@
 export type TypeIcon =
 	| 'Apps'
+	| 'ArrowUpwardIcon'
+	| 'ArrowDownwardIcon'
 	| 'TrendingUpIcon'
 	| 'TrendingDownIcon'
 	| 'Brightness7Icon'

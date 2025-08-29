@@ -27,7 +27,7 @@ export const CREATE_FACILITY = gql`
 `
 
 export const UPDATE_FACILITY = gql`
-	mutation UpdateFacility($id: Int!, $data: FacilityUpdateInput!) {
+	mutation UpdateFacility($id: Int!, $data: FacilityUpdateSimpleInput!) {
 		updateFacility(id: $id, data: $data) {
 			id
 			name

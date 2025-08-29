@@ -1,23 +1,15 @@
+import {
+	AMOUNT_FIELD,
+	DATE_FIELD,
+	FACILITY_FIELD,
+	PERSON_FIELD,
+} from '@/shared/common'
 import { IWidget } from '../../types'
 
 export const InflowElements: IWidget = {
 	fields: {
-		person: {
-			name: 'person',
-			label: 'Лицо',
-			type: 'autocomplete-form',
-			valueKey: 'id',
-			labelKeys: { rootLabel: 'name' },
-			required: true,
-		},
-		facility: {
-			name: 'facility',
-			label: 'Объект',
-			type: 'autocomplete-form',
-			valueKey: 'id',
-			labelKeys: { rootLabel: 'name' },
-			required: true,
-		},
+		person: { ...PERSON_FIELD },
+		facility: { ...FACILITY_FIELD },
 		job: {
 			name: 'job',
 			label: 'Вид работы',
@@ -26,18 +18,7 @@ export const InflowElements: IWidget = {
 			labelKeys: { rootLabel: 'name' },
 			required: true,
 		},
-		amount: {
-			name: 'amount',
-			label: 'Сумма',
-			type: 'number-form',
-			adornment: '₽',
-			required: true,
-		},
-		date: {
-			name: 'date',
-			label: 'Дата',
-			type: 'date-form',
-			required: true,
-		},
+		amount: { ...AMOUNT_FIELD },
+		date: { ...DATE_FIELD },
 	},
 }

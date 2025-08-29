@@ -1,4 +1,5 @@
 export type * from '../types'
+export * from './FieldConfig'
 export * from './IAutocomplete'
 export * from './IAutocompleteFormWithQuery'
 export * from './IWidget'

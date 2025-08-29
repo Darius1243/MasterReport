@@ -1,32 +1,29 @@
-import { PersonWithStatistics } from '@/generated/graphql'
+import { useGetPersonsWithStatistics } from '@/shared/hooks/person'
 import { isEmpty } from '@/shared/libs'
 import { NoData } from '@/shared/ui'
-import { AmountButtonWithDetails } from '@/shared/ui/amountButton'
 import { MuiList, MuiListItem } from '@/shared/ui/mui'
 import { ListSkeleton } from '@/shared/ui/skeleton'
+import { InflowByPerson } from '@features/inflow/ui'
+import { OutflowByPerson } from '@features/outflow/ui'
 import Box, { BoxProps } from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 
-interface IPersonsList extends BoxProps {
-	data: PersonWithStatistics[] | undefined
-	isLoading: boolean
-}
+const HEADERS = [
+	{ title: 'Имя' },
+	{ title: 'Приход, ₽' },
+	{ title: 'Расход, ₽' },
+]
 
-const headers = [{ title: 'Имя' }, { title: 'Приход, ₽' }]
+export const PersonsWithStatistics = ({ sx, ...props }: BoxProps) => {
+	const { data, loading } = useGetPersonsWithStatistics()
 
-export const PersonsList = ({
-	data,
-	isLoading,
-	sx,
-	...props
-}: IPersonsList) => {
-	if (isLoading) return <ListSkeleton count={3} />
+	if (loading) return <ListSkeleton count={3} />
 	if (isEmpty(data)) return <NoData />
 
 	return (
-		<Box sx={{ mt: 2, ...sx }} {...props}>
+		<Box sx={{ mt: 2, flexGrow: 1, overflow: 'auto', ...sx }} {...props}>
 			<Box sx={{ display: 'flex', px: 2, pb: 2 }}>
-				{headers.map(({ title }, index) => (
+				{HEADERS.map(({ title }, index) => (
 					<Typography
 						key={title}
 						variant='body1'
@@ -39,14 +36,18 @@ export const PersonsList = ({
 			</Box>
 
 			<MuiList>
-				{data?.map(({ id, name, totalInflowAmount }) => (
+				{data?.map(({ id, name, totalInflowAmount, totalOutflowAmount }) => (
 					<MuiListItem key={id}>
 						<Typography variant='body1' sx={{ flex: 1, textAlign: 'left' }}>
 							{name}
 						</Typography>
 
 						<Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-							<AmountButtonWithDetails amount={totalInflowAmount} id={id} />
+							<InflowByPerson id={id} amount={totalInflowAmount} />
+						</Box>
+
+						<Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+							<OutflowByPerson id={id} amount={-totalOutflowAmount} />
 						</Box>
 					</MuiListItem>
 				))}

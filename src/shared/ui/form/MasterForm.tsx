@@ -1,10 +1,12 @@
 import { useGetDefaultValues, useYupValidationResolver } from '@/shared/hooks'
 import { isEmpty } from '@/shared/libs'
 import { IWidget } from '@/shared/model/types'
+import { TValue } from '@/shared/model/types/TValue'
 import { useEffect } from 'react'
 import { useForm, UseFormReturn } from 'react-hook-form'
 import { ErrorBoundary } from '../boundary'
 import { RenderInputFields } from '../mui/MasterForm'
+import { generateValidations } from '../mui/MasterForm/generateValidations'
 import { CustomForm } from './CustomForm'
 import { onSubmit } from './lib'
 
@@ -12,9 +14,9 @@ type FormData = Record<string, number | string | boolean>
 
 interface IMasterForm {
 	id?: number
-	data?: FormData
+	data?: FormData | null
 	error: Error | undefined
-	refetch: () => void
+	refetch?: () => void
 	isLoading: boolean
 	elements: IWidget
 	crud: {
@@ -22,6 +24,7 @@ interface IMasterForm {
 		update: (args: { variables: { id: number; data: any } }) => Promise<any>
 	}
 	onCloseModal?: () => void
+	children?: React.ReactNode
 }
 
 export const MasterForm = ({
@@ -33,8 +36,10 @@ export const MasterForm = ({
 	elements,
 	crud,
 	onCloseModal,
+	children,
 }: IMasterForm) => {
-	const { fields, validationSchema } = elements
+	const { fields } = elements
+	const validationSchema = generateValidations(fields)
 	const { create, update } = crud
 
 	const methods = useForm({
@@ -58,11 +63,11 @@ export const MasterForm = ({
 
 	const fetchData = async (data: FormData) => {
 		const resp = id
-			? await update({ variables: { id, data } })
-			: await create({ variables: { data } })
+			? await update({ variables: { id, data: transformData(data, id) } })
+			: await create({ variables: { data: data } })
 
 		methods.reset({})
-		refetch()
+		refetch?.()
 		onCloseModal?.()
 
 		return resp
@@ -74,6 +79,7 @@ export const MasterForm = ({
 				methods={methods}
 				onSubmit={handleSubmit(data => onSubmit(data, fetchData))}
 				isVisible={isVisible}
+				additionalChildren={children}
 			>
 				<RenderInputFields fields={fields} isLoading={isLoading} />
 			</CustomForm>
@@ -84,4 +90,26 @@ export const MasterForm = ({
 const setData = (data: FormData, methods: UseFormReturn) => {
 	methods.reset(data)
 	methods.trigger()
+}
+
+const transformData = (
+	formData: FormData,
+	entityId?: number
+): Record<string, TValue> => {
+	const GHOST_FIELD_PREFIX = '_'
+	const cleanedData: Record<string, any> = {}
+
+	for (const key in formData) {
+		if (Object.prototype.hasOwnProperty.call(formData, key)) {
+			if (!key.startsWith(GHOST_FIELD_PREFIX)) {
+				cleanedData[key] = formData[key]
+			}
+		}
+	}
+
+	if (entityId != undefined && cleanedData.hasOwnProperty('id')) {
+		delete cleanedData.id
+	}
+
+	return cleanedData
 }

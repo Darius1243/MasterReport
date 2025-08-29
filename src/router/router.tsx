@@ -3,6 +3,7 @@ import { Boundary } from '@/shared/ui/boundary'
 import { Fallback } from '@/shared/ui/fallback'
 import { InflowLoader } from '@features/inflow/lib'
 import { Layout } from '@features/layout/ui'
+import { OutflowLoader } from '@features/outflow/lib'
 import dayjs from 'dayjs'
 import { createBrowserRouter } from 'react-router'
 
@@ -33,6 +34,21 @@ export const router = createBrowserRouter(
 					async lazy() {
 						const { InflowPage } = await import('../pages/InflowPage')
 						return { Component: InflowPage }
+					},
+				},
+				{
+					path: 'outflow',
+					loader: OutflowLoader,
+					async lazy() {
+						const { OutflowPage } = await import('../pages/OutflowPage')
+						return { Component: OutflowPage }
+					},
+				},
+				{
+					path: 'settings',
+					async lazy() {
+						const { SettingsPage } = await import('../pages/SettingsPage')
+						return { Component: SettingsPage }
 					},
 				},
 				{

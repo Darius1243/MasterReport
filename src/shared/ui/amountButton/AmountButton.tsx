@@ -8,12 +8,12 @@ interface IAmountButtonProps extends IBaseButtonProps {
 export const AmountButton = ({ amount, sx, ...props }: IAmountButtonProps) => {
 	return (
 		<Button
-			label={amount ? amount.toLocaleString() : '0'}
+			label={amount ? `${amount.toLocaleString()} ₽` : '0'}
 			icon={
 				amount
 					? amount > 0
-						? 'TrendingUpIcon'
-						: 'TrendingDownIcon'
+						? 'ArrowUpwardIcon'
+						: 'ArrowDownwardIcon'
 					: undefined
 			}
 			sx={{

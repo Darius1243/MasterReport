@@ -10,6 +10,7 @@ interface IMuiModalProps extends ModalProps {
 	isHeightByContent?: boolean
 	isFullScreen?: boolean
 	isCloseOverseas?: boolean
+	children: React.ReactNode
 }
 
 export const MuiModal = ({

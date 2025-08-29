@@ -16,7 +16,7 @@ export const ErrorBoundary = ({
 	return error ? (
 		<ErrorAlertBanner
 			open={!!error}
-			text={'messages.failedToLoadData'}
+			text={'Ошибка загрузки данных'}
 			error={error}
 			action={<RefetchButton refetch={refetch} />}
 			{...props}

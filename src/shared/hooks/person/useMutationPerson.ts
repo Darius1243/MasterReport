@@ -1,11 +1,19 @@
 import {
 	DeletePersonMutationHookResult,
+	GetAllPersonsDocument,
+	GetPersonsWithStatisticsDocument,
 	useCreatePersonMutation,
 	useDeletePersonMutation,
 	useGetPersonByIdQuery,
+	useUpdatePersonMutation,
 } from '@/generated/graphql'
 import { showToastError, showToastPromise } from '@/shared/ui/toast'
 import { useEffect } from 'react'
+
+const REFETCH_QUERIES = [
+	{ query: GetAllPersonsDocument },
+	{ query: GetPersonsWithStatisticsDocument },
+]
 
 export function useMutationPerson(id?: number) {
 	const personQuery = useGetPersonByIdQuery({
@@ -13,9 +21,15 @@ export function useMutationPerson(id?: number) {
 		skip: id == undefined,
 	})
 
-	const [createPersonMutation, createPersonResult] = useCreatePersonMutation()
-	const [updatePersonMutation, updatePersonResult] = useCreatePersonMutation()
-	const [deletePersonMutation, deletePersonResult] = useDeletePersonMutation()
+	const [createPersonMutation, createPersonResult] = useCreatePersonMutation({
+		refetchQueries: REFETCH_QUERIES,
+	})
+	const [updatePersonMutation, updatePersonResult] = useUpdatePersonMutation({
+		refetchQueries: REFETCH_QUERIES,
+	})
+	const [deletePersonMutation, deletePersonResult] = useDeletePersonMutation({
+		refetchQueries: REFETCH_QUERIES,
+	})
 
 	useEffect(() => {
 		if (personQuery.error) {
@@ -40,7 +54,7 @@ export function useMutationPerson(id?: number) {
 		person: personQuery,
 		create: createPersonMutation,
 		update: updatePersonMutation,
-		delete: handleDeletePerson,
+		deleteItem: handleDeletePerson,
 		createPersonResult,
 		updatePersonResult,
 		deletePersonResult,

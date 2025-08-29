@@ -11,6 +11,7 @@ interface IMuiCardProps {
 	children: React.ReactNode
 	cardProps?: CardProps
 	cardContentProps?: CardContentProps
+	enablePaddingBottom?: boolean
 }
 
 export const MuiCard = ({
@@ -18,6 +19,7 @@ export const MuiCard = ({
 	actions,
 	cardProps,
 	cardContentProps,
+	enablePaddingBottom = false,
 	children,
 }: IMuiCardProps) => {
 	const { t } = useTranslation()
@@ -25,7 +27,14 @@ export const MuiCard = ({
 	return (
 		<Card
 			{...cardProps}
-			sx={{ flex: 1, borderRadius: BORDER_RADIUS, ...cardProps?.sx }}
+			sx={{
+				borderRadius: BORDER_RADIUS,
+				flex: 1,
+				minHeight: 0,
+				display: 'flex',
+				flexDirection: 'column',
+				...cardProps?.sx,
+			}}
 		>
 			{title || actions ? (
 				<Box
@@ -51,7 +60,15 @@ export const MuiCard = ({
 
 			<CardContent
 				{...cardContentProps}
-				sx={{ height: '100%', py: 0, ...cardContentProps?.sx }}
+				sx={{
+					py: 0,
+					flex: 1,
+					minHeight: 0,
+					display: 'flex',
+					flexDirection: 'column',
+					...cardContentProps?.sx,
+				}}
+				style={{ paddingBottom: enablePaddingBottom ? 12 : 0 }}
 			>
 				{children}
 			</CardContent>

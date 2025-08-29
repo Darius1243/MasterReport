@@ -1,0 +1,1 @@
+export { MuiTabs } from './MuiTabs'

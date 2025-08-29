@@ -1,8 +1,16 @@
-import { callSnackbarError } from '@/helper'
-import { IDeleteButtonWithDialog } from '@/interfaces'
-import { DialogYesNoCancel } from '@components/modal/DialogYesNoCancel'
+import { showToastError } from '@/shared/libs/toast/toast'
 import { cloneElement, ReactElement, useState } from 'react'
-import { StyledButton } from '../StyledButton'
+import { DialogYesNoCancel } from '../dialogYesNoCancel'
+import { Button } from '../mui/Button'
+
+interface IDeleteButtonWithDialog {
+	action: (data: any) => Promise<any>
+	disabled?: boolean
+	handleBeforeRemove?: () => Promise<string>
+	sx?: any
+	title?: string
+	children?: ReactElement
+}
 
 export const DeleteButtonWithDialog = ({
 	action,
@@ -10,7 +18,7 @@ export const DeleteButtonWithDialog = ({
 	disabled = false,
 	handleBeforeRemove = undefined,
 	sx = {},
-	title = 'messages.doYouReallyWantToDeleteTheseRecords',
+	title = 'Вы действительно хотите данную запись?',
 	...props
 }: IDeleteButtonWithDialog) => {
 	const [openDialog, setOpenDialog] = useState<boolean>(false)
@@ -30,7 +38,7 @@ export const DeleteButtonWithDialog = ({
 					return
 			}
 		} catch (error) {
-			callSnackbarError(error)
+			showToastError(error)
 		} finally {
 			setOpenDialog(false)
 			setIsLoading(false)
@@ -44,15 +52,16 @@ export const DeleteButtonWithDialog = ({
 		setAdditionalMessage(messages || '')
 	}
 
-	const childrenComponent = (children: ReactElement) => cloneElement(children, { onClick: onOpenDialog })
+	const childrenComponent = (children: ReactElement) =>
+		cloneElement(children, { onClick: onOpenDialog })
 
 	return (
 		<>
 			{children ? (
 				childrenComponent(children)
 			) : (
-				<StyledButton
-					label={'messages.remove'}
+				<Button
+					label={'Удалить'}
 					icon={'DeleteIcon'}
 					color={'error'}
 					onClick={onOpenDialog}

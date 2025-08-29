@@ -43,6 +43,7 @@ export type Facility = {
 export type FacilityCount = {
   __typename?: 'FacilityCount';
   inflows: Scalars['Int']['output'];
+  outflow: Scalars['Int']['output'];
 };
 
 
@@ -50,9 +51,15 @@ export type FacilityCountInflowsArgs = {
   where?: InputMaybe<InflowWhereInput>;
 };
 
+
+export type FacilityCountOutflowArgs = {
+  where?: InputMaybe<OutflowWhereInput>;
+};
+
 export type FacilityCreateInput = {
   inflows?: InputMaybe<InflowCreateNestedManyWithoutFacilityInput>;
   name: Scalars['String']['input'];
+  outflow?: InputMaybe<OutflowCreateNestedManyWithoutFacilityInput>;
 };
 
 export type FacilityCreateNestedOneWithoutInflowsInput = {
@@ -61,8 +68,19 @@ export type FacilityCreateNestedOneWithoutInflowsInput = {
   create?: InputMaybe<FacilityUncheckedCreateWithoutInflowsInput>;
 };
 
+export type FacilityCreateNestedOneWithoutOutflowInput = {
+  connect?: InputMaybe<FacilityWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FacilityCreateOrConnectWithoutOutflowInput>;
+  create?: InputMaybe<FacilityUncheckedCreateWithoutOutflowInput>;
+};
+
 export type FacilityCreateOrConnectWithoutInflowsInput = {
   create: FacilityUncheckedCreateWithoutInflowsInput;
+  where: FacilityWhereUniqueInput;
+};
+
+export type FacilityCreateOrConnectWithoutOutflowInput = {
+  create: FacilityUncheckedCreateWithoutOutflowInput;
   where: FacilityWhereUniqueInput;
 };
 
@@ -74,15 +92,24 @@ export type FacilityRelationFilter = {
 export type FacilityUncheckedCreateWithoutInflowsInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   name: Scalars['String']['input'];
+  outflow?: InputMaybe<OutflowUncheckedCreateNestedManyWithoutFacilityInput>;
+};
+
+export type FacilityUncheckedCreateWithoutOutflowInput = {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  inflows?: InputMaybe<InflowUncheckedCreateNestedManyWithoutFacilityInput>;
+  name: Scalars['String']['input'];
 };
 
 export type FacilityUncheckedUpdateWithoutInflowsInput = {
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  outflow?: InputMaybe<OutflowUncheckedUpdateManyWithoutFacilityNestedInput>;
 };
 
-export type FacilityUpdateInput = {
-  inflows?: InputMaybe<InflowUpdateManyWithoutFacilityNestedInput>;
+export type FacilityUncheckedUpdateWithoutOutflowInput = {
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  inflows?: InputMaybe<InflowUncheckedUpdateManyWithoutFacilityNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
@@ -94,9 +121,27 @@ export type FacilityUpdateOneRequiredWithoutInflowsNestedInput = {
   upsert?: InputMaybe<FacilityUpsertWithoutInflowsInput>;
 };
 
+export type FacilityUpdateOneRequiredWithoutOutflowNestedInput = {
+  connect?: InputMaybe<FacilityWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<FacilityCreateOrConnectWithoutOutflowInput>;
+  create?: InputMaybe<FacilityUncheckedCreateWithoutOutflowInput>;
+  update?: InputMaybe<FacilityUncheckedUpdateWithoutOutflowInput>;
+  upsert?: InputMaybe<FacilityUpsertWithoutOutflowInput>;
+};
+
+export type FacilityUpdateSimpleInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type FacilityUpsertWithoutInflowsInput = {
   create: FacilityUncheckedCreateWithoutInflowsInput;
   update: FacilityUncheckedUpdateWithoutInflowsInput;
+  where?: InputMaybe<FacilityWhereInput>;
+};
+
+export type FacilityUpsertWithoutOutflowInput = {
+  create: FacilityUncheckedCreateWithoutOutflowInput;
+  update: FacilityUncheckedUpdateWithoutOutflowInput;
   where?: InputMaybe<FacilityWhereInput>;
 };
 
@@ -107,6 +152,7 @@ export type FacilityWhereInput = {
   id?: InputMaybe<IntFilter>;
   inflows?: InputMaybe<InflowListRelationFilter>;
   name?: InputMaybe<StringFilter>;
+  outflow?: InputMaybe<OutflowListRelationFilter>;
 };
 
 export type FacilityWhereUniqueInput = {
@@ -116,6 +162,7 @@ export type FacilityWhereUniqueInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   inflows?: InputMaybe<InflowListRelationFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
+  outflow?: InputMaybe<OutflowListRelationFilter>;
 };
 
 export type FloatFieldUpdateOperationsInput = {
@@ -294,6 +341,20 @@ export type InflowScalarWhereInput = {
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
 
+export type InflowUncheckedCreateNestedManyWithoutFacilityInput = {
+  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutFacilityInput>>;
+  create?: InputMaybe<Array<InflowCreateWithoutFacilityInput>>;
+  createMany?: InputMaybe<InflowCreateManyFacilityInputEnvelope>;
+};
+
+export type InflowUncheckedCreateNestedManyWithoutPersonInput = {
+  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<InflowCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<InflowCreateManyPersonInputEnvelope>;
+};
+
 export type InflowUncheckedCreateWithoutFacilityInput = {
   amount: Scalars['Float']['input'];
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
@@ -338,15 +399,18 @@ export type InflowUncheckedUpdateManyWithoutFacilityInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type InflowUncheckedUpdateManyWithoutJobInput = {
-  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+export type InflowUncheckedUpdateManyWithoutFacilityNestedInput = {
+  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutFacilityInput>>;
+  create?: InputMaybe<Array<InflowCreateWithoutFacilityInput>>;
+  createMany?: InputMaybe<InflowCreateManyFacilityInputEnvelope>;
+  delete?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<InflowScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  set?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  update?: InputMaybe<Array<InflowUpdateWithWhereUniqueWithoutFacilityInput>>;
+  updateMany?: InputMaybe<Array<InflowUpdateManyWithWhereWithoutFacilityInput>>;
+  upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutFacilityInput>>;
 };
 
 export type InflowUncheckedUpdateManyWithoutPersonInput = {
@@ -360,6 +424,20 @@ export type InflowUncheckedUpdateManyWithoutPersonInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type InflowUncheckedUpdateManyWithoutPersonNestedInput = {
+  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<InflowCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<InflowCreateManyPersonInputEnvelope>;
+  delete?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<InflowScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  set?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  update?: InputMaybe<Array<InflowUpdateWithWhereUniqueWithoutPersonInput>>;
+  updateMany?: InputMaybe<Array<InflowUpdateManyWithWhereWithoutPersonInput>>;
+  upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutPersonInput>>;
+};
+
 export type InflowUncheckedUpdateWithoutFacilityInput = {
   amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -367,17 +445,6 @@ export type InflowUncheckedUpdateWithoutFacilityInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
   jobId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
-export type InflowUncheckedUpdateWithoutJobInput = {
-  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -409,65 +476,13 @@ export type InflowUpdateManyWithWhereWithoutFacilityInput = {
   where: InflowScalarWhereInput;
 };
 
-export type InflowUpdateManyWithWhereWithoutJobInput = {
-  data: InflowUncheckedUpdateManyWithoutJobInput;
-  where: InflowScalarWhereInput;
-};
-
 export type InflowUpdateManyWithWhereWithoutPersonInput = {
   data: InflowUncheckedUpdateManyWithoutPersonInput;
   where: InflowScalarWhereInput;
 };
 
-export type InflowUpdateManyWithoutFacilityNestedInput = {
-  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutFacilityInput>>;
-  create?: InputMaybe<Array<InflowCreateWithoutFacilityInput>>;
-  createMany?: InputMaybe<InflowCreateManyFacilityInputEnvelope>;
-  delete?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<InflowScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  set?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  update?: InputMaybe<Array<InflowUpdateWithWhereUniqueWithoutFacilityInput>>;
-  updateMany?: InputMaybe<Array<InflowUpdateManyWithWhereWithoutFacilityInput>>;
-  upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutFacilityInput>>;
-};
-
-export type InflowUpdateManyWithoutJobNestedInput = {
-  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutJobInput>>;
-  create?: InputMaybe<Array<InflowCreateWithoutJobInput>>;
-  createMany?: InputMaybe<InflowCreateManyJobInputEnvelope>;
-  delete?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<InflowScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  set?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  update?: InputMaybe<Array<InflowUpdateWithWhereUniqueWithoutJobInput>>;
-  updateMany?: InputMaybe<Array<InflowUpdateManyWithWhereWithoutJobInput>>;
-  upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutJobInput>>;
-};
-
-export type InflowUpdateManyWithoutPersonNestedInput = {
-  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutPersonInput>>;
-  create?: InputMaybe<Array<InflowCreateWithoutPersonInput>>;
-  createMany?: InputMaybe<InflowCreateManyPersonInputEnvelope>;
-  delete?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<InflowScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  set?: InputMaybe<Array<InflowWhereUniqueInput>>;
-  update?: InputMaybe<Array<InflowUpdateWithWhereUniqueWithoutPersonInput>>;
-  updateMany?: InputMaybe<Array<InflowUpdateManyWithWhereWithoutPersonInput>>;
-  upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutPersonInput>>;
-};
-
 export type InflowUpdateWithWhereUniqueWithoutFacilityInput = {
   data: InflowUncheckedUpdateWithoutFacilityInput;
-  where: InflowWhereUniqueInput;
-};
-
-export type InflowUpdateWithWhereUniqueWithoutJobInput = {
-  data: InflowUncheckedUpdateWithoutJobInput;
   where: InflowWhereUniqueInput;
 };
 
@@ -479,12 +494,6 @@ export type InflowUpdateWithWhereUniqueWithoutPersonInput = {
 export type InflowUpsertWithWhereUniqueWithoutFacilityInput = {
   create: InflowUncheckedCreateWithoutFacilityInput;
   update: InflowUncheckedUpdateWithoutFacilityInput;
-  where: InflowWhereUniqueInput;
-};
-
-export type InflowUpsertWithWhereUniqueWithoutJobInput = {
-  create: InflowUncheckedCreateWithoutJobInput;
-  update: InflowUncheckedUpdateWithoutJobInput;
   where: InflowWhereUniqueInput;
 };
 
@@ -597,17 +606,16 @@ export type JobUncheckedUpdateWithoutInflowsInput = {
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
-export type JobUpdateInput = {
-  inflows?: InputMaybe<InflowUpdateManyWithoutJobNestedInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
 export type JobUpdateOneRequiredWithoutInflowsNestedInput = {
   connect?: InputMaybe<JobWhereUniqueInput>;
   connectOrCreate?: InputMaybe<JobCreateOrConnectWithoutInflowsInput>;
   create?: InputMaybe<JobUncheckedCreateWithoutInflowsInput>;
   update?: InputMaybe<JobUncheckedUpdateWithoutInflowsInput>;
   upsert?: InputMaybe<JobUpsertWithoutInflowsInput>;
+};
+
+export type JobUpdateSimpleInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type JobUpsertWithoutInflowsInput = {
@@ -639,14 +647,17 @@ export type Mutation = {
   createFacility: Facility;
   createInflow: Inflow;
   createJob: Job;
+  createOutflow: Outflow;
   createPerson: Person;
   deleteFacility: Scalars['Boolean']['output'];
   deleteInflow: Scalars['Boolean']['output'];
   deleteJob: Scalars['Boolean']['output'];
+  deleteOutflow: Scalars['Boolean']['output'];
   deletePerson: Scalars['Boolean']['output'];
   updateFacility?: Maybe<Facility>;
   updateInflow?: Maybe<Inflow>;
   updateJob?: Maybe<Job>;
+  updateOutflow?: Maybe<Outflow>;
   updatePerson?: Maybe<Person>;
 };
 
@@ -663,6 +674,11 @@ export type MutationCreateInflowArgs = {
 
 export type MutationCreateJobArgs = {
   data: JobCreateInput;
+};
+
+
+export type MutationCreateOutflowArgs = {
+  data: OutflowApiCreateInput;
 };
 
 
@@ -686,13 +702,18 @@ export type MutationDeleteJobArgs = {
 };
 
 
+export type MutationDeleteOutflowArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationDeletePersonArgs = {
   id: Scalars['Int']['input'];
 };
 
 
 export type MutationUpdateFacilityArgs = {
-  data: FacilityUpdateInput;
+  data: FacilityUpdateSimpleInput;
   id: Scalars['Int']['input'];
 };
 
@@ -704,13 +725,19 @@ export type MutationUpdateInflowArgs = {
 
 
 export type MutationUpdateJobArgs = {
-  data: JobUpdateInput;
+  data: JobUpdateSimpleInput;
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateOutflowArgs = {
+  data: OutflowUpdateInput;
   id: Scalars['Int']['input'];
 };
 
 
 export type MutationUpdatePersonArgs = {
-  data: PersonUpdateInput;
+  data: PersonUpdateSimpleInput;
   id: Scalars['Int']['input'];
 };
 
@@ -779,17 +806,306 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type Outflow = {
+  __typename?: 'Outflow';
+  amount: Scalars['Float']['output'];
+  createdAt: Scalars['DateTimeISO']['output'];
+  date: Scalars['DateTimeISO']['output'];
+  description?: Maybe<Scalars['String']['output']>;
+  facility: Facility;
+  facilityId: Scalars['Int']['output'];
+  id: Scalars['Int']['output'];
+  person: Person;
+  personId: Scalars['Int']['output'];
+  updatedAt: Scalars['DateTimeISO']['output'];
+};
+
+export type OutflowApiCreateInput = {
+  amount: Scalars['Float']['input'];
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facility: Scalars['Int']['input'];
+  person: Scalars['Int']['input'];
+};
+
+export type OutflowCreateManyFacilityInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  personId: Scalars['Int']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowCreateManyFacilityInputEnvelope = {
+  data: Array<OutflowCreateManyFacilityInput>;
+};
+
+export type OutflowCreateManyPersonInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facilityId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowCreateManyPersonInputEnvelope = {
+  data: Array<OutflowCreateManyPersonInput>;
+};
+
+export type OutflowCreateNestedManyWithoutFacilityInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutFacilityInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutFacilityInput>>;
+  createMany?: InputMaybe<OutflowCreateManyFacilityInputEnvelope>;
+};
+
+export type OutflowCreateNestedManyWithoutPersonInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<OutflowCreateManyPersonInputEnvelope>;
+};
+
+export type OutflowCreateOrConnectWithoutFacilityInput = {
+  create: OutflowUncheckedCreateWithoutFacilityInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowCreateOrConnectWithoutPersonInput = {
+  create: OutflowUncheckedCreateWithoutPersonInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowCreateWithoutFacilityInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  person: PersonCreateNestedOneWithoutOutflowsInput;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowCreateWithoutPersonInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facility: FacilityCreateNestedOneWithoutOutflowInput;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowListRelationFilter = {
+  every?: InputMaybe<OutflowWhereInput>;
+  none?: InputMaybe<OutflowWhereInput>;
+  some?: InputMaybe<OutflowWhereInput>;
+};
+
+export type OutflowScalarWhereInput = {
+  AND?: InputMaybe<Array<OutflowScalarWhereInput>>;
+  NOT?: InputMaybe<Array<OutflowScalarWhereInput>>;
+  OR?: InputMaybe<Array<OutflowScalarWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
+  description?: InputMaybe<StringNullableFilter>;
+  facilityId?: InputMaybe<IntFilter>;
+  id?: InputMaybe<IntFilter>;
+  personId?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
+export type OutflowUncheckedCreateNestedManyWithoutFacilityInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutFacilityInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutFacilityInput>>;
+  createMany?: InputMaybe<OutflowCreateManyFacilityInputEnvelope>;
+};
+
+export type OutflowUncheckedCreateNestedManyWithoutPersonInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<OutflowCreateManyPersonInputEnvelope>;
+};
+
+export type OutflowUncheckedCreateWithoutFacilityInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  personId: Scalars['Int']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowUncheckedCreateWithoutPersonInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facilityId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowUncheckedUpdateManyWithoutFacilityInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUncheckedUpdateManyWithoutFacilityNestedInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutFacilityInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutFacilityInput>>;
+  createMany?: InputMaybe<OutflowCreateManyFacilityInputEnvelope>;
+  delete?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutflowScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutflowUpdateWithWhereUniqueWithoutFacilityInput>>;
+  updateMany?: InputMaybe<Array<OutflowUpdateManyWithWhereWithoutFacilityInput>>;
+  upsert?: InputMaybe<Array<OutflowUpsertWithWhereUniqueWithoutFacilityInput>>;
+};
+
+export type OutflowUncheckedUpdateManyWithoutPersonInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUncheckedUpdateManyWithoutPersonNestedInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutPersonInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutPersonInput>>;
+  createMany?: InputMaybe<OutflowCreateManyPersonInputEnvelope>;
+  delete?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutflowScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutflowUpdateWithWhereUniqueWithoutPersonInput>>;
+  updateMany?: InputMaybe<Array<OutflowUpdateManyWithWhereWithoutPersonInput>>;
+  upsert?: InputMaybe<Array<OutflowUpsertWithWhereUniqueWithoutPersonInput>>;
+};
+
+export type OutflowUncheckedUpdateWithoutFacilityInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUncheckedUpdateWithoutPersonInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUpdateInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facility?: InputMaybe<FacilityUpdateOneRequiredWithoutOutflowNestedInput>;
+  person?: InputMaybe<PersonUpdateOneRequiredWithoutOutflowsNestedInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUpdateManyWithWhereWithoutFacilityInput = {
+  data: OutflowUncheckedUpdateManyWithoutFacilityInput;
+  where: OutflowScalarWhereInput;
+};
+
+export type OutflowUpdateManyWithWhereWithoutPersonInput = {
+  data: OutflowUncheckedUpdateManyWithoutPersonInput;
+  where: OutflowScalarWhereInput;
+};
+
+export type OutflowUpdateWithWhereUniqueWithoutFacilityInput = {
+  data: OutflowUncheckedUpdateWithoutFacilityInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowUpdateWithWhereUniqueWithoutPersonInput = {
+  data: OutflowUncheckedUpdateWithoutPersonInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowUpsertWithWhereUniqueWithoutFacilityInput = {
+  create: OutflowUncheckedCreateWithoutFacilityInput;
+  update: OutflowUncheckedUpdateWithoutFacilityInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowUpsertWithWhereUniqueWithoutPersonInput = {
+  create: OutflowUncheckedCreateWithoutPersonInput;
+  update: OutflowUncheckedUpdateWithoutPersonInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowWhereInput = {
+  AND?: InputMaybe<Array<OutflowWhereInput>>;
+  NOT?: InputMaybe<Array<OutflowWhereInput>>;
+  OR?: InputMaybe<Array<OutflowWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
+  description?: InputMaybe<StringNullableFilter>;
+  facility?: InputMaybe<FacilityRelationFilter>;
+  facilityId?: InputMaybe<IntFilter>;
+  id?: InputMaybe<IntFilter>;
+  person?: InputMaybe<PersonRelationFilter>;
+  personId?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
+export type OutflowWhereUniqueInput = {
+  AND?: InputMaybe<Array<OutflowWhereInput>>;
+  NOT?: InputMaybe<Array<OutflowWhereInput>>;
+  OR?: InputMaybe<Array<OutflowWhereInput>>;
+  amount?: InputMaybe<FloatFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  date?: InputMaybe<DateTimeFilter>;
+  description?: InputMaybe<StringNullableFilter>;
+  facility?: InputMaybe<FacilityRelationFilter>;
+  facilityId?: InputMaybe<IntFilter>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  person?: InputMaybe<PersonRelationFilter>;
+  personId?: InputMaybe<IntFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
 export type Person = {
   __typename?: 'Person';
   _count?: Maybe<PersonCount>;
-  email: Scalars['String']['output'];
+  email?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
 };
 
 export type PersonCount = {
   __typename?: 'PersonCount';
   inflows: Scalars['Int']['output'];
+  outflows: Scalars['Int']['output'];
 };
 
 
@@ -797,10 +1113,16 @@ export type PersonCountInflowsArgs = {
   where?: InputMaybe<InflowWhereInput>;
 };
 
+
+export type PersonCountOutflowsArgs = {
+  where?: InputMaybe<OutflowWhereInput>;
+};
+
 export type PersonCreateInput = {
-  email: Scalars['String']['input'];
+  email?: InputMaybe<Scalars['String']['input']>;
   inflows?: InputMaybe<InflowCreateNestedManyWithoutPersonInput>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  outflows?: InputMaybe<OutflowCreateNestedManyWithoutPersonInput>;
 };
 
 export type PersonCreateNestedOneWithoutInflowsInput = {
@@ -809,8 +1131,19 @@ export type PersonCreateNestedOneWithoutInflowsInput = {
   create?: InputMaybe<PersonUncheckedCreateWithoutInflowsInput>;
 };
 
+export type PersonCreateNestedOneWithoutOutflowsInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutOutflowsInput>;
+  create?: InputMaybe<PersonUncheckedCreateWithoutOutflowsInput>;
+};
+
 export type PersonCreateOrConnectWithoutInflowsInput = {
   create: PersonUncheckedCreateWithoutInflowsInput;
+  where: PersonWhereUniqueInput;
+};
+
+export type PersonCreateOrConnectWithoutOutflowsInput = {
+  create: PersonUncheckedCreateWithoutOutflowsInput;
   where: PersonWhereUniqueInput;
 };
 
@@ -820,21 +1153,31 @@ export type PersonRelationFilter = {
 };
 
 export type PersonUncheckedCreateWithoutInflowsInput = {
-  email: Scalars['String']['input'];
+  email?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
+  name: Scalars['String']['input'];
+  outflows?: InputMaybe<OutflowUncheckedCreateNestedManyWithoutPersonInput>;
+};
+
+export type PersonUncheckedCreateWithoutOutflowsInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  inflows?: InputMaybe<InflowUncheckedCreateNestedManyWithoutPersonInput>;
+  name: Scalars['String']['input'];
 };
 
 export type PersonUncheckedUpdateWithoutInflowsInput = {
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  email?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  outflows?: InputMaybe<OutflowUncheckedUpdateManyWithoutPersonNestedInput>;
 };
 
-export type PersonUpdateInput = {
-  email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  inflows?: InputMaybe<InflowUpdateManyWithoutPersonNestedInput>;
-  name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+export type PersonUncheckedUpdateWithoutOutflowsInput = {
+  email?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  inflows?: InputMaybe<InflowUncheckedUpdateManyWithoutPersonNestedInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
 export type PersonUpdateOneRequiredWithoutInflowsNestedInput = {
@@ -845,9 +1188,28 @@ export type PersonUpdateOneRequiredWithoutInflowsNestedInput = {
   upsert?: InputMaybe<PersonUpsertWithoutInflowsInput>;
 };
 
+export type PersonUpdateOneRequiredWithoutOutflowsNestedInput = {
+  connect?: InputMaybe<PersonWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<PersonCreateOrConnectWithoutOutflowsInput>;
+  create?: InputMaybe<PersonUncheckedCreateWithoutOutflowsInput>;
+  update?: InputMaybe<PersonUncheckedUpdateWithoutOutflowsInput>;
+  upsert?: InputMaybe<PersonUpsertWithoutOutflowsInput>;
+};
+
+export type PersonUpdateSimpleInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type PersonUpsertWithoutInflowsInput = {
   create: PersonUncheckedCreateWithoutInflowsInput;
   update: PersonUncheckedUpdateWithoutInflowsInput;
+  where?: InputMaybe<PersonWhereInput>;
+};
+
+export type PersonUpsertWithoutOutflowsInput = {
+  create: PersonUncheckedCreateWithoutOutflowsInput;
+  update: PersonUncheckedUpdateWithoutOutflowsInput;
   where?: InputMaybe<PersonWhereInput>;
 };
 
@@ -855,10 +1217,11 @@ export type PersonWhereInput = {
   AND?: InputMaybe<Array<PersonWhereInput>>;
   NOT?: InputMaybe<Array<PersonWhereInput>>;
   OR?: InputMaybe<Array<PersonWhereInput>>;
-  email?: InputMaybe<StringFilter>;
+  email?: InputMaybe<StringNullableFilter>;
   id?: InputMaybe<IntFilter>;
   inflows?: InputMaybe<InflowListRelationFilter>;
-  name?: InputMaybe<StringNullableFilter>;
+  name?: InputMaybe<StringFilter>;
+  outflows?: InputMaybe<OutflowListRelationFilter>;
 };
 
 export type PersonWhereUniqueInput = {
@@ -868,17 +1231,20 @@ export type PersonWhereUniqueInput = {
   email?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   inflows?: InputMaybe<InflowListRelationFilter>;
-  name?: InputMaybe<StringNullableFilter>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  outflows?: InputMaybe<OutflowListRelationFilter>;
 };
 
 export type PersonWithStatistics = {
   __typename?: 'PersonWithStatistics';
   _count?: Maybe<PersonCount>;
-  email: Scalars['String']['output'];
+  email?: Maybe<Scalars['String']['output']>;
   id: Scalars['Int']['output'];
   inflowIds: Array<Scalars['Int']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  outflowIds: Array<Scalars['Int']['output']>;
   totalInflowAmount: Scalars['Float']['output'];
+  totalOutflowAmount: Scalars['Float']['output'];
 };
 
 export type Query = {
@@ -890,6 +1256,9 @@ export type Query = {
   inflowsByPersonId?: Maybe<Array<Inflow>>;
   job?: Maybe<Job>;
   jobs: Array<Job>;
+  outflow?: Maybe<Outflow>;
+  outflows: Array<Outflow>;
+  outflowsByPersonId?: Maybe<Array<Outflow>>;
   person?: Maybe<Person>;
   persons: Array<Person>;
   personsWithStatistics?: Maybe<Array<PersonWithStatistics>>;
@@ -913,6 +1282,16 @@ export type QueryInflowsByPersonIdArgs = {
 
 export type QueryJobArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryOutflowArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryOutflowsByPersonIdArgs = {
+  personId: Scalars['Int']['input'];
 };
 
 
@@ -973,7 +1352,7 @@ export type CreateFacilityMutation = { __typename?: 'Mutation', createFacility: 
 
 export type UpdateFacilityMutationVariables = Exact<{
   id: Scalars['Int']['input'];
-  data: FacilityUpdateInput;
+  data: FacilityUpdateSimpleInput;
 }>;
 
 
@@ -1003,7 +1382,7 @@ export type GetInflowsByPersonIdQueryVariables = Exact<{
 }>;
 
 
-export type GetInflowsByPersonIdQuery = { __typename?: 'Query', inflowsByPersonId?: Array<{ __typename?: 'Inflow', id: number, amount: number, date: any, person: { __typename?: 'Person', name?: string | null }, facility: { __typename?: 'Facility', name: string }, job: { __typename?: 'Job', name: string } }> | null };
+export type GetInflowsByPersonIdQuery = { __typename?: 'Query', inflowsByPersonId?: Array<{ __typename?: 'Inflow', id: number, amount: number, date: any, person: { __typename?: 'Person', name: string }, facility: { __typename?: 'Facility', name: string }, job: { __typename?: 'Job', name: string } }> | null };
 
 export type CreateInflowMutationVariables = Exact<{
   data: InflowApiCreateInput;
@@ -1048,7 +1427,7 @@ export type CreateJobMutation = { __typename?: 'Mutation', createJob: { __typena
 
 export type UpdateJobMutationVariables = Exact<{
   id: Scalars['Int']['input'];
-  data: JobUpdateInput;
+  data: JobUpdateSimpleInput;
 }>;
 
 
@@ -1061,32 +1440,73 @@ export type DeleteJobMutationVariables = Exact<{
 
 export type DeleteJobMutation = { __typename?: 'Mutation', deleteJob: boolean };
 
+export type GetAllOutflowsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllOutflowsQuery = { __typename?: 'Query', outflows: Array<{ __typename?: 'Outflow', id: number, personId: number, facilityId: number, amount: number, date: any }> };
+
+export type GetOutflowByIdQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type GetOutflowByIdQuery = { __typename?: 'Query', outflow?: { __typename?: 'Outflow', id: number, personId: number, facilityId: number, amount: number, date: any } | null };
+
+export type GetOutflowsByPersonIdQueryVariables = Exact<{
+  personId: Scalars['Int']['input'];
+}>;
+
+
+export type GetOutflowsByPersonIdQuery = { __typename?: 'Query', outflowsByPersonId?: Array<{ __typename?: 'Outflow', id: number, amount: number, date: any, person: { __typename?: 'Person', name: string }, facility: { __typename?: 'Facility', name: string } }> | null };
+
+export type CreateOutflowMutationVariables = Exact<{
+  data: OutflowApiCreateInput;
+}>;
+
+
+export type CreateOutflowMutation = { __typename?: 'Mutation', createOutflow: { __typename?: 'Outflow', personId: number, facilityId: number, amount: number, date: any } };
+
+export type UpdateOutflowMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  data: OutflowUpdateInput;
+}>;
+
+
+export type UpdateOutflowMutation = { __typename?: 'Mutation', updateOutflow?: { __typename?: 'Outflow', id: number, personId: number, facilityId: number, amount: number, date: any } | null };
+
+export type DeleteOutflowMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DeleteOutflowMutation = { __typename?: 'Mutation', deleteOutflow: boolean };
+
 export type GetAllPersonsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPersonsQuery = { __typename?: 'Query', persons: Array<{ __typename?: 'Person', id: number, email: string, name?: string | null }> };
+export type GetAllPersonsQuery = { __typename?: 'Query', persons: Array<{ __typename?: 'Person', id: number, email?: string | null, name: string }> };
 
 export type GetPersonByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetPersonByIdQuery = { __typename?: 'Query', person?: { __typename?: 'Person', id: number, email: string, name?: string | null } | null };
+export type GetPersonByIdQuery = { __typename?: 'Query', person?: { __typename?: 'Person', id: number, email?: string | null, name: string } | null };
 
 export type CreatePersonMutationVariables = Exact<{
   data: PersonCreateInput;
 }>;
 
 
-export type CreatePersonMutation = { __typename?: 'Mutation', createPerson: { __typename?: 'Person', email: string, name?: string | null } };
+export type CreatePersonMutation = { __typename?: 'Mutation', createPerson: { __typename?: 'Person', email?: string | null, name: string } };
 
 export type UpdatePersonMutationVariables = Exact<{
   id: Scalars['Int']['input'];
-  data: PersonUpdateInput;
+  data: PersonUpdateSimpleInput;
 }>;
 
 
-export type UpdatePersonMutation = { __typename?: 'Mutation', updatePerson?: { __typename?: 'Person', id: number, email: string, name?: string | null } | null };
+export type UpdatePersonMutation = { __typename?: 'Mutation', updatePerson?: { __typename?: 'Person', id: number, email?: string | null, name: string } | null };
 
 export type DeletePersonMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1098,7 +1518,7 @@ export type DeletePersonMutation = { __typename?: 'Mutation', deletePerson: bool
 export type GetPersonsWithStatisticsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPersonsWithStatisticsQuery = { __typename?: 'Query', personsWithStatistics?: Array<{ __typename?: 'PersonWithStatistics', id: number, name?: string | null, totalInflowAmount: number, inflowIds: Array<number> }> | null };
+export type GetPersonsWithStatisticsQuery = { __typename?: 'Query', personsWithStatistics?: Array<{ __typename?: 'PersonWithStatistics', id: number, name: string, totalInflowAmount: number, inflowIds: Array<number>, totalOutflowAmount: number, outflowIds: Array<number> }> | null };
 
 
 export const GetAllFacilitiesDocument = gql`
@@ -1216,7 +1636,7 @@ export type CreateFacilityMutationHookResult = ReturnType<typeof useCreateFacili
 export type CreateFacilityMutationResult = Apollo.MutationResult<CreateFacilityMutation>;
 export type CreateFacilityMutationOptions = Apollo.BaseMutationOptions<CreateFacilityMutation, CreateFacilityMutationVariables>;
 export const UpdateFacilityDocument = gql`
-    mutation UpdateFacility($id: Int!, $data: FacilityUpdateInput!) {
+    mutation UpdateFacility($id: Int!, $data: FacilityUpdateSimpleInput!) {
   updateFacility(id: $id, data: $data) {
     id
     name
@@ -1643,7 +2063,7 @@ export type CreateJobMutationHookResult = ReturnType<typeof useCreateJobMutation
 export type CreateJobMutationResult = Apollo.MutationResult<CreateJobMutation>;
 export type CreateJobMutationOptions = Apollo.BaseMutationOptions<CreateJobMutation, CreateJobMutationVariables>;
 export const UpdateJobDocument = gql`
-    mutation UpdateJob($id: Int!, $data: JobUpdateInput!) {
+    mutation UpdateJob($id: Int!, $data: JobUpdateSimpleInput!) {
   updateJob(id: $id, data: $data) {
     id
     name
@@ -1708,6 +2128,246 @@ export function useDeleteJobMutation(baseOptions?: Apollo.MutationHookOptions<De
 export type DeleteJobMutationHookResult = ReturnType<typeof useDeleteJobMutation>;
 export type DeleteJobMutationResult = Apollo.MutationResult<DeleteJobMutation>;
 export type DeleteJobMutationOptions = Apollo.BaseMutationOptions<DeleteJobMutation, DeleteJobMutationVariables>;
+export const GetAllOutflowsDocument = gql`
+    query GetAllOutflows {
+  outflows {
+    id
+    personId
+    facilityId
+    amount
+    date
+  }
+}
+    `;
+
+/**
+ * __useGetAllOutflowsQuery__
+ *
+ * To run a query within a React component, call `useGetAllOutflowsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllOutflowsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllOutflowsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllOutflowsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>(GetAllOutflowsDocument, options);
+      }
+export function useGetAllOutflowsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>(GetAllOutflowsDocument, options);
+        }
+export function useGetAllOutflowsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>(GetAllOutflowsDocument, options);
+        }
+export type GetAllOutflowsQueryHookResult = ReturnType<typeof useGetAllOutflowsQuery>;
+export type GetAllOutflowsLazyQueryHookResult = ReturnType<typeof useGetAllOutflowsLazyQuery>;
+export type GetAllOutflowsSuspenseQueryHookResult = ReturnType<typeof useGetAllOutflowsSuspenseQuery>;
+export type GetAllOutflowsQueryResult = Apollo.QueryResult<GetAllOutflowsQuery, GetAllOutflowsQueryVariables>;
+export const GetOutflowByIdDocument = gql`
+    query GetOutflowById($id: Int!) {
+  outflow(id: $id) {
+    id
+    personId
+    facilityId
+    amount
+    date
+  }
+}
+    `;
+
+/**
+ * __useGetOutflowByIdQuery__
+ *
+ * To run a query within a React component, call `useGetOutflowByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetOutflowByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetOutflowByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetOutflowByIdQuery(baseOptions: Apollo.QueryHookOptions<GetOutflowByIdQuery, GetOutflowByIdQueryVariables> & ({ variables: GetOutflowByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetOutflowByIdQuery, GetOutflowByIdQueryVariables>(GetOutflowByIdDocument, options);
+      }
+export function useGetOutflowByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetOutflowByIdQuery, GetOutflowByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetOutflowByIdQuery, GetOutflowByIdQueryVariables>(GetOutflowByIdDocument, options);
+        }
+export function useGetOutflowByIdSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetOutflowByIdQuery, GetOutflowByIdQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetOutflowByIdQuery, GetOutflowByIdQueryVariables>(GetOutflowByIdDocument, options);
+        }
+export type GetOutflowByIdQueryHookResult = ReturnType<typeof useGetOutflowByIdQuery>;
+export type GetOutflowByIdLazyQueryHookResult = ReturnType<typeof useGetOutflowByIdLazyQuery>;
+export type GetOutflowByIdSuspenseQueryHookResult = ReturnType<typeof useGetOutflowByIdSuspenseQuery>;
+export type GetOutflowByIdQueryResult = Apollo.QueryResult<GetOutflowByIdQuery, GetOutflowByIdQueryVariables>;
+export const GetOutflowsByPersonIdDocument = gql`
+    query GetOutflowsByPersonId($personId: Int!) {
+  outflowsByPersonId(personId: $personId) {
+    id
+    amount
+    date
+    person {
+      name
+    }
+    facility {
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetOutflowsByPersonIdQuery__
+ *
+ * To run a query within a React component, call `useGetOutflowsByPersonIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetOutflowsByPersonIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetOutflowsByPersonIdQuery({
+ *   variables: {
+ *      personId: // value for 'personId'
+ *   },
+ * });
+ */
+export function useGetOutflowsByPersonIdQuery(baseOptions: Apollo.QueryHookOptions<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables> & ({ variables: GetOutflowsByPersonIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables>(GetOutflowsByPersonIdDocument, options);
+      }
+export function useGetOutflowsByPersonIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables>(GetOutflowsByPersonIdDocument, options);
+        }
+export function useGetOutflowsByPersonIdSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables>(GetOutflowsByPersonIdDocument, options);
+        }
+export type GetOutflowsByPersonIdQueryHookResult = ReturnType<typeof useGetOutflowsByPersonIdQuery>;
+export type GetOutflowsByPersonIdLazyQueryHookResult = ReturnType<typeof useGetOutflowsByPersonIdLazyQuery>;
+export type GetOutflowsByPersonIdSuspenseQueryHookResult = ReturnType<typeof useGetOutflowsByPersonIdSuspenseQuery>;
+export type GetOutflowsByPersonIdQueryResult = Apollo.QueryResult<GetOutflowsByPersonIdQuery, GetOutflowsByPersonIdQueryVariables>;
+export const CreateOutflowDocument = gql`
+    mutation CreateOutflow($data: OutflowApiCreateInput!) {
+  createOutflow(data: $data) {
+    personId
+    facilityId
+    amount
+    date
+  }
+}
+    `;
+export type CreateOutflowMutationFn = Apollo.MutationFunction<CreateOutflowMutation, CreateOutflowMutationVariables>;
+
+/**
+ * __useCreateOutflowMutation__
+ *
+ * To run a mutation, you first call `useCreateOutflowMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOutflowMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOutflowMutation, { data, loading, error }] = useCreateOutflowMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOutflowMutation(baseOptions?: Apollo.MutationHookOptions<CreateOutflowMutation, CreateOutflowMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOutflowMutation, CreateOutflowMutationVariables>(CreateOutflowDocument, options);
+      }
+export type CreateOutflowMutationHookResult = ReturnType<typeof useCreateOutflowMutation>;
+export type CreateOutflowMutationResult = Apollo.MutationResult<CreateOutflowMutation>;
+export type CreateOutflowMutationOptions = Apollo.BaseMutationOptions<CreateOutflowMutation, CreateOutflowMutationVariables>;
+export const UpdateOutflowDocument = gql`
+    mutation UpdateOutflow($id: Int!, $data: OutflowUpdateInput!) {
+  updateOutflow(id: $id, data: $data) {
+    id
+    personId
+    facilityId
+    amount
+    date
+  }
+}
+    `;
+export type UpdateOutflowMutationFn = Apollo.MutationFunction<UpdateOutflowMutation, UpdateOutflowMutationVariables>;
+
+/**
+ * __useUpdateOutflowMutation__
+ *
+ * To run a mutation, you first call `useUpdateOutflowMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOutflowMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOutflowMutation, { data, loading, error }] = useUpdateOutflowMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateOutflowMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOutflowMutation, UpdateOutflowMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOutflowMutation, UpdateOutflowMutationVariables>(UpdateOutflowDocument, options);
+      }
+export type UpdateOutflowMutationHookResult = ReturnType<typeof useUpdateOutflowMutation>;
+export type UpdateOutflowMutationResult = Apollo.MutationResult<UpdateOutflowMutation>;
+export type UpdateOutflowMutationOptions = Apollo.BaseMutationOptions<UpdateOutflowMutation, UpdateOutflowMutationVariables>;
+export const DeleteOutflowDocument = gql`
+    mutation DeleteOutflow($id: Int!) {
+  deleteOutflow(id: $id)
+}
+    `;
+export type DeleteOutflowMutationFn = Apollo.MutationFunction<DeleteOutflowMutation, DeleteOutflowMutationVariables>;
+
+/**
+ * __useDeleteOutflowMutation__
+ *
+ * To run a mutation, you first call `useDeleteOutflowMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteOutflowMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteOutflowMutation, { data, loading, error }] = useDeleteOutflowMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteOutflowMutation(baseOptions?: Apollo.MutationHookOptions<DeleteOutflowMutation, DeleteOutflowMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteOutflowMutation, DeleteOutflowMutationVariables>(DeleteOutflowDocument, options);
+      }
+export type DeleteOutflowMutationHookResult = ReturnType<typeof useDeleteOutflowMutation>;
+export type DeleteOutflowMutationResult = Apollo.MutationResult<DeleteOutflowMutation>;
+export type DeleteOutflowMutationOptions = Apollo.BaseMutationOptions<DeleteOutflowMutation, DeleteOutflowMutationVariables>;
 export const GetAllPersonsDocument = gql`
     query GetAllPersons {
   persons {
@@ -1826,7 +2486,7 @@ export type CreatePersonMutationHookResult = ReturnType<typeof useCreatePersonMu
 export type CreatePersonMutationResult = Apollo.MutationResult<CreatePersonMutation>;
 export type CreatePersonMutationOptions = Apollo.BaseMutationOptions<CreatePersonMutation, CreatePersonMutationVariables>;
 export const UpdatePersonDocument = gql`
-    mutation UpdatePerson($id: Int!, $data: PersonUpdateInput!) {
+    mutation UpdatePerson($id: Int!, $data: PersonUpdateSimpleInput!) {
   updatePerson(id: $id, data: $data) {
     id
     email
@@ -1899,6 +2559,8 @@ export const GetPersonsWithStatisticsDocument = gql`
     name
     totalInflowAmount
     inflowIds
+    totalOutflowAmount
+    outflowIds
   }
 }
     `;

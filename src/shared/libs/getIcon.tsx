@@ -1,6 +1,8 @@
 import { AccountTree, SearchOutlined } from '@mui/icons-material'
 import AddIcon from '@mui/icons-material/Add'
 import AddCircleIcon from '@mui/icons-material/AddCircleOutlineOutlined'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
 import AttachFileIcon from '@mui/icons-material/AttachFile'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import Brightness7Icon from '@mui/icons-material/Brightness7'
@@ -49,6 +51,10 @@ export const getIcon = (
 	switch (icon) {
 		case 'Apps':
 			return <></>
+		case 'ArrowUpwardIcon':
+			return <ArrowUpwardIcon />
+		case 'ArrowDownwardIcon':
+			return <ArrowDownwardIcon />
 		case 'HomeIcon':
 			return <HomeIcon />
 		case 'TrendingUpIcon':
@@ -88,7 +94,7 @@ export const getIcon = (
 		case 'SaveIcon':
 			return <SaveIcon fontSize={'small'} />
 		case 'SettingsIcon':
-			return <SettingsIcon fontSize={'small'} />
+			return <SettingsIcon />
 		case 'FullscreenIcon':
 			return <FullscreenIcon fontSize={'small'} />
 		case 'ClipboardPasteIcon':
@@ -108,7 +114,7 @@ export const getIcon = (
 		case 'CancelIcon':
 			return <CancelIcon />
 		case 'WarningIcon':
-			return <WarningIcon />
+			return <WarningIcon fontSize={'inherit'} />
 		case 'InfoIcon':
 			return <InfoIcon />
 		case 'ReorderIcon':

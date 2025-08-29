@@ -1,13 +1,13 @@
-import { useGetPersonsWithStatisticsQuery } from '@/generated/graphql'
+import { useGetAllPersonsQuery } from '@/generated/graphql'
 import { showToastError } from '@/shared/ui/toast'
 import { useEffect } from 'react'
 
 export function useGetPersons() {
-	const { data, error, ...rest } = useGetPersonsWithStatisticsQuery()
+	const { data, error, ...rest } = useGetAllPersonsQuery()
 
 	useEffect(() => {
 		if (error) showToastError('Ошибка при загрузке списка пользователей', error)
 	}, [error])
 
-	return { ...rest, data: data?.personsWithStatistics ?? [], error }
+	return { ...rest, data: data?.persons ?? [], error }
 }

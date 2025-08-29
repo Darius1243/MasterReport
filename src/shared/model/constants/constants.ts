@@ -26,6 +26,8 @@ export const DATETIME_FORM = 'datetime-form'
 export const CHECKBOX_FORM = 'checkbox-form'
 export const RADIO_FORM = 'radio-form'
 export const DATETIME_FORMAT = 'YYYY-MM-DDTHH:mm:ss'
+export const QR_SCANNER = 'qr-scanner'
+export const QR_SCANNER_FORM = 'qr-scanner-form'
 
 export const VALIDATION_MESSAGES = {
 	REQUIRED: 'Поле обязательно для заполнения',
@@ -34,3 +36,10 @@ export const VALIDATION_MESSAGES = {
 	INVALID_DATE: 'Неверный формат даты',
 	INVALID_NUMBER: 'Неверный формат числа',
 } as const
+
+export const NAV_MENU_ITEMS = [
+	{ primary: 'home', to: '/', icon: 'HomeIcon' },
+	{ primary: 'inflow', to: '/inflow', icon: 'InflowIcon' },
+	{ primary: 'outflow', to: '/outflow', icon: 'OutflowIcon' },
+	{ primary: 'settings', to: '/settings', icon: 'SettingsIcon' },
+] as const

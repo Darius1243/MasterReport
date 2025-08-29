@@ -1,25 +1,27 @@
-import { useGetInflowsByPersonId } from '@/shared/hooks/inflow'
-import { Inflows } from '@features/inflow/ui'
 import { DetailsPopover } from '@features/monetaryStatistics/ui/DetailsPopover'
 import { useState } from 'react'
 import { AmountButton } from './AmountButton'
 
+interface IAmountButtonWithDetailsProps {
+	amount: number
+	loading: boolean
+	getData: () => Promise<void>
+	children: React.ReactNode
+}
+
 export const AmountButtonWithDetails = ({
 	amount,
-	id,
-}: {
-	amount: number
-	id: number
-}) => {
+	getData,
+	loading,
+	children,
+}: IAmountButtonWithDetailsProps) => {
 	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
-	const { getInflows, data, loading } = useGetInflowsByPersonId(id)
-
 	const open = Boolean(anchorEl)
 
 	const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		const currentTarget = e.currentTarget
 
-		await getInflows()
+		await getData()
 		setAnchorEl(currentTarget)
 	}
 
@@ -32,7 +34,7 @@ export const AmountButtonWithDetails = ({
 				anchorEl={anchorEl}
 				onClose={() => setAnchorEl(null)}
 			>
-				<Inflows data={data} />
+				{children}
 			</DetailsPopover>
 		</>
 	)

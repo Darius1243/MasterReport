@@ -126,7 +126,7 @@ export async function showToastPromise<T>(
 	})
 }
 
-export function showToastError(baseMessage?: string, error?: any): void {
+export function showToastError(error?: any, baseMessage?: string): void {
 	const defaultMessage = baseMessage ?? 'Произошла ошибка 😥'
 	const actualErrorMessage = getErrorMessage(error)
 	toast.error(

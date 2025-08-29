@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import { FormEventHandler, KeyboardEvent } from 'react'
 import { FormProvider } from 'react-hook-form'
 import { Button } from '../mui/Button'
@@ -6,6 +7,7 @@ interface IFormProps {
 	methods: any
 	onSubmit: FormEventHandler<HTMLFormElement>
 	children: React.ReactNode
+	additionalChildren?: React.ReactNode
 	style?: React.CSSProperties
 	isVisible?: boolean
 }
@@ -14,6 +16,7 @@ export const CustomForm = ({
 	methods,
 	onSubmit,
 	isVisible,
+	additionalChildren,
 	children,
 }: IFormProps) => {
 	const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
@@ -37,13 +40,21 @@ export const CustomForm = ({
 			>
 				{children}
 
-				<Button
-					label={'save'}
-					icon={'SaveIcon'}
-					type={'submit'}
-					disabled={!isVisible}
-					sx={{ alignSelf: 'flex-start', ml: 2 }}
-				/>
+				<Box
+					display={'flex'}
+					alignItems={'center'}
+					justifyContent={'space-between'}
+				>
+					<Button
+						label={'save'}
+						icon={'SaveIcon'}
+						type={'submit'}
+						disabled={!isVisible}
+						sx={{ alignSelf: 'flex-start', ml: 2 }}
+					/>
+
+					{additionalChildren}
+				</Box>
 			</form>
 		</FormProvider>
 	)

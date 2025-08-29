@@ -27,7 +27,7 @@ export const CREATE_JOB = gql`
 `
 
 export const UPDATE_JOB = gql`
-	mutation UpdateJob($id: Int!, $data: JobUpdateInput!) {
+	mutation UpdateJob($id: Int!, $data: JobUpdateSimpleInput!) {
 		updateJob(id: $id, data: $data) {
 			id
 			name
