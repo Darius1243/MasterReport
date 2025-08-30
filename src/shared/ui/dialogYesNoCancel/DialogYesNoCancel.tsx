@@ -4,7 +4,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogTitle from '@mui/material/DialogTitle'
 import { t } from 'i18next'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '../mui/Button'
 
 export interface IDialogYesNoCancel {
@@ -39,6 +39,7 @@ export const DialogYesNoCancel = ({
 	children = undefined,
 }: IDialogYesNoCancel) => {
 	const [showLoader, setShowLoader] = useState(false)
+	const buttonRef = useRef<HTMLButtonElement>(null)
 
 	const message =
 		typeof children === 'string'
@@ -103,46 +104,53 @@ export const DialogYesNoCancel = ({
 				</Box>
 
 				<DialogActions>
-					<Button
-						size={'medium'}
-						variant={'text'}
-						fullWidth
-						label={'Ок'}
-						onClick={() => onClose('ok', data)}
-						isDisabled={isDisableSaveButton || isLoading}
-						sx={{ display: isOnlyOk ? 'flex' : 'none' }}
-					/>
+					{isOnlyOk && (
+						<Button
+							ref={buttonRef}
+							size={'medium'}
+							variant={'text'}
+							fullWidth
+							label={'Ок'}
+							onClick={() => onClose('ok', data)}
+							isDisabled={isDisableSaveButton || isLoading}
+							autoFocus
+						/>
+					)}
 
-					<Button
-						size={'medium'}
-						variant={'text'}
-						fullWidth
-						label={'Да'}
-						onClick={() => onClose('yes', data)}
-						isDisabled={isDisableSaveButton || isLoading}
-						sx={{ display: isOnlyOk ? 'none' : 'flex' }}
-						color={'error'}
-					/>
+					{!isOnlyOk && (
+						<Button
+							ref={buttonRef}
+							size={'medium'}
+							variant={'text'}
+							fullWidth
+							label={'Да'}
+							onClick={() => onClose('yes', data)}
+							isDisabled={isDisableSaveButton || isLoading}
+							color={'error'}
+						/>
+					)}
 
-					<Button
-						size={'medium'}
-						variant={'blank'}
-						fullWidth
-						label={'Нет'}
-						onClick={() => onClose('no', data)}
-						isDisabled={isLoading}
-						sx={{ display: disableNo || isOnlyOk ? 'none' : 'flex' }}
-					/>
+					{!isOnlyOk && !disableNo && (
+						<Button
+							size={'medium'}
+							variant={'blank'}
+							fullWidth
+							label={'Нет'}
+							onClick={() => onClose('no', data)}
+							isDisabled={isLoading}
+						/>
+					)}
 
-					<Button
-						size={'medium'}
-						variant={'blank'}
-						fullWidth
-						label={'Отмена'}
-						onClick={() => onClose('cancel', data)}
-						sx={{ display: disableCancel || isOnlyOk ? 'none' : 'flex' }}
-						isDisabled={isLoading}
-					/>
+					{!isOnlyOk && !disableCancel && (
+						<Button
+							size={'medium'}
+							variant={'blank'}
+							fullWidth
+							label={'Отмена'}
+							onClick={() => onClose('cancel', data)}
+							isDisabled={isLoading}
+						/>
+					)}
 				</DialogActions>
 			</Box>
 		</Dialog>

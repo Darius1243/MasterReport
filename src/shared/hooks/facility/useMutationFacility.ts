@@ -1,11 +1,11 @@
-import { useMutationEntity } from '../useMutationEntity'
 import {
-	GET_FACILITY_BY_ID,
 	CREATE_FACILITY,
-	UPDATE_FACILITY,
 	DELETE_FACILITY,
 	GET_ALL_FACILITIES,
+	GET_FACILITY_BY_ID,
+	UPDATE_FACILITY,
 } from '@/entities/user/api/facilityQueries'
+import { useMutationEntity } from '../useMutationEntity'
 
 export function useMutationFacility(id?: number) {
 	const {
@@ -23,7 +23,7 @@ export function useMutationFacility(id?: number) {
 			createQuery: CREATE_FACILITY,
 			updateQuery: UPDATE_FACILITY,
 			deleteQuery: DELETE_FACILITY,
-			refetchQuery: GET_ALL_FACILITIES,
+			refetchQueries: [GET_ALL_FACILITIES],
 			entityNameRu: 'объекта',
 		},
 		id

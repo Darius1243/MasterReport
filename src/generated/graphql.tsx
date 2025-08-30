@@ -81,11 +81,6 @@ export type DocumentTypeUncheckedUpdateWithoutOutflowsInput = {
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
-export type DocumentTypeUpdateInput = {
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-  outflows?: InputMaybe<OutflowUpdateManyWithoutDocumentTypeNestedInput>;
-};
-
 export type DocumentTypeUpdateOneWithoutOutflowsNestedInput = {
   connect?: InputMaybe<DocumentTypeWhereUniqueInput>;
   connectOrCreate?: InputMaybe<DocumentTypeCreateOrConnectWithoutOutflowsInput>;
@@ -94,6 +89,10 @@ export type DocumentTypeUpdateOneWithoutOutflowsNestedInput = {
   disconnect?: InputMaybe<DocumentTypeWhereInput>;
   update?: InputMaybe<DocumentTypeUncheckedUpdateWithoutOutflowsInput>;
   upsert?: InputMaybe<DocumentTypeUpsertWithoutOutflowsInput>;
+};
+
+export type DocumentTypeUpdateSimpleInput = {
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentTypeUpsertWithoutOutflowsInput = {
@@ -824,7 +823,7 @@ export type MutationDeletePersonArgs = {
 
 
 export type MutationUpdateDocumentTypeArgs = {
-  data: DocumentTypeUpdateInput;
+  data: DocumentTypeUpdateSimpleInput;
   id: Scalars['Int']['input'];
 };
 
@@ -1145,17 +1144,6 @@ export type OutflowUncheckedCreateWithoutPersonInput = {
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
-export type OutflowUncheckedUpdateManyWithoutDocumentTypeInput = {
-  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
 export type OutflowUncheckedUpdateManyWithoutFacilityInput = {
   amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1206,17 +1194,6 @@ export type OutflowUncheckedUpdateManyWithoutPersonNestedInput = {
   upsert?: InputMaybe<Array<OutflowUpsertWithWhereUniqueWithoutPersonInput>>;
 };
 
-export type OutflowUncheckedUpdateWithoutDocumentTypeInput = {
-  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
-  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
-  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
-};
-
 export type OutflowUncheckedUpdateWithoutFacilityInput = {
   amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1250,11 +1227,6 @@ export type OutflowUpdateInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type OutflowUpdateManyWithWhereWithoutDocumentTypeInput = {
-  data: OutflowUncheckedUpdateManyWithoutDocumentTypeInput;
-  where: OutflowScalarWhereInput;
-};
-
 export type OutflowUpdateManyWithWhereWithoutFacilityInput = {
   data: OutflowUncheckedUpdateManyWithoutFacilityInput;
   where: OutflowScalarWhereInput;
@@ -1265,25 +1237,6 @@ export type OutflowUpdateManyWithWhereWithoutPersonInput = {
   where: OutflowScalarWhereInput;
 };
 
-export type OutflowUpdateManyWithoutDocumentTypeNestedInput = {
-  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutDocumentTypeInput>>;
-  create?: InputMaybe<Array<OutflowCreateWithoutDocumentTypeInput>>;
-  createMany?: InputMaybe<OutflowCreateManyDocumentTypeInputEnvelope>;
-  delete?: InputMaybe<Array<OutflowWhereUniqueInput>>;
-  deleteMany?: InputMaybe<Array<OutflowScalarWhereInput>>;
-  disconnect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
-  set?: InputMaybe<Array<OutflowWhereUniqueInput>>;
-  update?: InputMaybe<Array<OutflowUpdateWithWhereUniqueWithoutDocumentTypeInput>>;
-  updateMany?: InputMaybe<Array<OutflowUpdateManyWithWhereWithoutDocumentTypeInput>>;
-  upsert?: InputMaybe<Array<OutflowUpsertWithWhereUniqueWithoutDocumentTypeInput>>;
-};
-
-export type OutflowUpdateWithWhereUniqueWithoutDocumentTypeInput = {
-  data: OutflowUncheckedUpdateWithoutDocumentTypeInput;
-  where: OutflowWhereUniqueInput;
-};
-
 export type OutflowUpdateWithWhereUniqueWithoutFacilityInput = {
   data: OutflowUncheckedUpdateWithoutFacilityInput;
   where: OutflowWhereUniqueInput;
@@ -1291,12 +1244,6 @@ export type OutflowUpdateWithWhereUniqueWithoutFacilityInput = {
 
 export type OutflowUpdateWithWhereUniqueWithoutPersonInput = {
   data: OutflowUncheckedUpdateWithoutPersonInput;
-  where: OutflowWhereUniqueInput;
-};
-
-export type OutflowUpsertWithWhereUniqueWithoutDocumentTypeInput = {
-  create: OutflowUncheckedCreateWithoutDocumentTypeInput;
-  update: OutflowUncheckedUpdateWithoutDocumentTypeInput;
   where: OutflowWhereUniqueInput;
 };
 
@@ -1613,7 +1560,7 @@ export type CreateDocumentTypeMutation = { __typename?: 'Mutation', createDocume
 
 export type UpdateDocumentTypeMutationVariables = Exact<{
   id: Scalars['Int']['input'];
-  data: DocumentTypeUpdateInput;
+  data: DocumentTypeUpdateSimpleInput;
 }>;
 
 
@@ -1931,7 +1878,7 @@ export type CreateDocumentTypeMutationHookResult = ReturnType<typeof useCreateDo
 export type CreateDocumentTypeMutationResult = Apollo.MutationResult<CreateDocumentTypeMutation>;
 export type CreateDocumentTypeMutationOptions = Apollo.BaseMutationOptions<CreateDocumentTypeMutation, CreateDocumentTypeMutationVariables>;
 export const UpdateDocumentTypeDocument = gql`
-    mutation UpdateDocumentType($id: Int!, $data: DocumentTypeUpdateInput!) {
+    mutation UpdateDocumentType($id: Int!, $data: DocumentTypeUpdateSimpleInput!) {
   updateDocumentType(id: $id, data: $data) {
     id
     name

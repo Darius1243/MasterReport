@@ -18,7 +18,7 @@ export const DeleteButtonWithDialog = ({
 	disabled = false,
 	handleBeforeRemove = undefined,
 	sx = {},
-	title = 'Вы действительно хотите данную запись?',
+	title = 'Вы действительно хотите удалить данную запись?',
 	...props
 }: IDeleteButtonWithDialog) => {
 	const [openDialog, setOpenDialog] = useState<boolean>(false)

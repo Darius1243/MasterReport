@@ -1,11 +1,11 @@
-import { useMutationEntity } from '../useMutationEntity'
 import {
-	GET_DOCUMENT_TYPE_BY_ID,
 	CREATE_DOCUMENT_TYPE,
-	UPDATE_DOCUMENT_TYPE,
 	DELETE_DOCUMENT_TYPE,
 	GET_ALL_DOCUMENT_TYPES,
+	GET_DOCUMENT_TYPE_BY_ID,
+	UPDATE_DOCUMENT_TYPE,
 } from '@/entities/user/api/documentTypeQueries'
+import { useMutationEntity } from '../useMutationEntity'
 
 export function useMutationDocumentType(id?: number) {
 	const {
@@ -23,7 +23,7 @@ export function useMutationDocumentType(id?: number) {
 			createQuery: CREATE_DOCUMENT_TYPE,
 			updateQuery: UPDATE_DOCUMENT_TYPE,
 			deleteQuery: DELETE_DOCUMENT_TYPE,
-			refetchQuery: GET_ALL_DOCUMENT_TYPES,
+			refetchQueries: [GET_ALL_DOCUMENT_TYPES],
 			entityNameRu: 'вида документов',
 		},
 		id

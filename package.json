@@ -18,7 +18,7 @@
 		"@emotion/styled": "^11.14.1",
 		"@mui/icons-material": "^7.3.1",
 		"@mui/material": "^7.3.1",
-		"@mui/x-date-pickers": "^8.10.2",
+		"@mui/x-date-pickers": "^8.11.0",
 		"apollo-server-express": "^3.13.0",
 		"dayjs": "^1.11.15",
 		"graphql": "^16.11.0",

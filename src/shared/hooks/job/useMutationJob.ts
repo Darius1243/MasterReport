@@ -1,11 +1,11 @@
-import { useMutationEntity } from '../useMutationEntity'
 import {
-	GET_JOB_BY_ID,
 	CREATE_JOB,
-	UPDATE_JOB,
 	DELETE_JOB,
 	GET_ALL_JOBS,
+	GET_JOB_BY_ID,
+	UPDATE_JOB,
 } from '@/entities/user/api/jobQueries'
+import { useMutationEntity } from '../useMutationEntity'
 
 export function useMutationJob(id?: number) {
 	const {
@@ -23,7 +23,7 @@ export function useMutationJob(id?: number) {
 			createQuery: CREATE_JOB,
 			updateQuery: UPDATE_JOB,
 			deleteQuery: DELETE_JOB,
-			refetchQuery: GET_ALL_JOBS,
+			refetchQueries: [GET_ALL_JOBS],
 			entityNameRu: 'вида работ',
 		},
 		id

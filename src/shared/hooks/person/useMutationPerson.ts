@@ -1,12 +1,12 @@
-import { useMutationEntity } from '../useMutationEntity'
 import {
-	GET_PERSON_BY_ID,
 	CREATE_PERSON,
-	UPDATE_PERSON,
 	DELETE_PERSON,
 	GET_ALL_PERSONS,
+	GET_PERSON_BY_ID,
 	GET_PERSONS_WITH_STATISTICS,
+	UPDATE_PERSON,
 } from '@/entities/user/api/personQueries'
+import { useMutationEntity } from '../useMutationEntity'
 
 export function useMutationPerson(id?: number) {
 	const {

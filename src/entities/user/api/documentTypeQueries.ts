@@ -27,7 +27,7 @@ export const CREATE_DOCUMENT_TYPE = gql`
 `
 
 export const UPDATE_DOCUMENT_TYPE = gql`
-	mutation UpdateDocumentType($id: Int!, $data: DocumentTypeUpdateInput!) {
+	mutation UpdateDocumentType($id: Int!, $data: DocumentTypeUpdateSimpleInput!) {
 		updateDocumentType(id: $id, data: $data) {
 			id
 			name
