@@ -20,7 +20,14 @@ export const DatePickerForm = ({
 		// 	},
 		// }}
 		render={({
-			field: { ref, onChange: formOnChange, onBlur, value: fieldValue, name, ...rest },
+			field: {
+				ref,
+				onChange: formOnChange,
+				onBlur,
+				value: fieldValue,
+				name,
+				...rest
+			},
 			fieldState: { error },
 		}) => {
 			return (

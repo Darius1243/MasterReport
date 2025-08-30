@@ -107,7 +107,7 @@ export async function showToastPromise<T>(
 	const defaultErrorText = texts?.error ?? 'Произошла ошибка 😥'
 	return await toast.promise(promise, {
 		pending: texts?.pending ?? 'Запрос выполняется... ⏳',
-		success: texts?.success ?? 'Запрос успешно выполнен! 🎉',
+		success: texts?.success ?? 'Запрос успешно выполнен!',
 		error: err => {
 			const actualErrorMessage = getErrorMessage(err)
 			return React.createElement(

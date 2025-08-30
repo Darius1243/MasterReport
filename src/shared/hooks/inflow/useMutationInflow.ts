@@ -1,5 +1,6 @@
 import {
 	DeleteInflowMutationHookResult,
+	GetPersonsWithStatisticsDocument,
 	useCreateInflowMutation,
 	useDeleteInflowMutation,
 	useUpdateInflowMutation,
@@ -7,9 +8,15 @@ import {
 import { showToastPromise } from '@/shared/ui/toast'
 
 export function useMutationInflow() {
-	const [createInflowMutation, createInflowResult] = useCreateInflowMutation()
-	const [updateInflowMutation, updateInflowResult] = useUpdateInflowMutation()
-	const [deleteInflowMutation, deleteInflowResult] = useDeleteInflowMutation()
+	const [createInflowMutation, createInflowResult] = useCreateInflowMutation({
+		refetchQueries: [{ query: GetPersonsWithStatisticsDocument }],
+	})
+	const [updateInflowMutation, updateInflowResult] = useUpdateInflowMutation({
+		refetchQueries: [{ query: GetPersonsWithStatisticsDocument }],
+	})
+	const [deleteInflowMutation, deleteInflowResult] = useDeleteInflowMutation({
+		refetchQueries: [{ query: GetPersonsWithStatisticsDocument }],
+	})
 
 	const handleDeleteInflow: DeleteInflowMutationHookResult[0] = async (
 		...args

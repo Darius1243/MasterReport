@@ -1,4 +1,6 @@
 export type TypeIcon =
+	| 'InflowIcon'
+	| 'OutflowIcon'
 	| 'Apps'
 	| 'ArrowUpwardIcon'
 	| 'ArrowDownwardIcon'

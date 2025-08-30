@@ -5,6 +5,7 @@ import {
 	UPDATE_PERSON,
 	DELETE_PERSON,
 	GET_ALL_PERSONS,
+	GET_PERSONS_WITH_STATISTICS,
 } from '@/entities/user/api/personQueries'
 
 export function useMutationPerson(id?: number) {
@@ -23,7 +24,7 @@ export function useMutationPerson(id?: number) {
 			createQuery: CREATE_PERSON,
 			updateQuery: UPDATE_PERSON,
 			deleteQuery: DELETE_PERSON,
-			refetchQuery: GET_ALL_PERSONS,
+			refetchQueries: [GET_ALL_PERSONS, GET_PERSONS_WITH_STATISTICS],
 			entityNameRu: 'лица',
 		},
 		id

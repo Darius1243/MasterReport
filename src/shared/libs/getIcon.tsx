@@ -23,11 +23,13 @@ import InfoIcon from '@mui/icons-material/Info'
 import MenuIcon from '@mui/icons-material/Menu'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
+import NorthEastIcon from '@mui/icons-material/NorthEast'
 import RemoveIcon from '@mui/icons-material/Remove'
 import ReorderIcon from '@mui/icons-material/Reorder'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
 import SaveIcon from '@mui/icons-material/SaveRounded'
 import SettingsIcon from '@mui/icons-material/Settings'
+import SouthWestIcon from '@mui/icons-material/SouthWest'
 import ChartIcon from '@mui/icons-material/SsidChart'
 import TrendingDownIcon from '@mui/icons-material/TrendingDown'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'
@@ -139,6 +141,10 @@ export const getIcon = (
 			return <VisibilityOutlinedIcon color={'action'} />
 		case 'VisibilityOffIcon':
 			return <VisibilityOffOutlinedIcon color={'action'} />
+		case 'InflowIcon':
+			return <SouthWestIcon />
+		case 'OutflowIcon':
+			return <NorthEastIcon />
 
 		default:
 			return icon

@@ -1,16 +1,27 @@
 import { IBaseButtonProps } from '@/shared/model/types/IBaseButtonProps'
+import { Typography } from '@mui/material'
 import { Button } from '../mui/Button'
 
 interface IAmountButtonProps extends IBaseButtonProps {
 	amount: number | null
+	disableIcon?: boolean
+	isBalance?: boolean
 }
 
-export const AmountButton = ({ amount, sx, ...props }: IAmountButtonProps) => {
+export const AmountButton = ({
+	amount,
+	sx,
+	disableIcon,
+	isBalance,
+	...props
+}: IAmountButtonProps) => {
+	if (!amount && !isBalance) return null
+
 	return (
 		<Button
 			label={amount ? `${amount.toLocaleString()} ₽` : '0'}
 			icon={
-				amount
+				!disableIcon && amount
 					? amount > 0
 						? 'ArrowUpwardIcon'
 						: 'ArrowDownwardIcon'
@@ -43,6 +54,13 @@ export const AmountButton = ({ amount, sx, ...props }: IAmountButtonProps) => {
 				...sx,
 			}}
 			{...props}
-		/>
+		>
+			{amount && isBalance ? (
+				<>
+					{amount && amount > 0 && <Typography>Аванс</Typography>}
+					{amount && amount < 0 && <Typography>Вам должны</Typography>}
+				</>
+			) : null}
+		</Button>
 	)
 }

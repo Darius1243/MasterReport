@@ -27,7 +27,7 @@ const pickerComponents = {
 }
 
 function getValue(value: string | null, type: string): dayjs.Dayjs | null {
-	if (!value) return dayjs()
+	if (!value) return null
 
 	const newValue = dayjs(value)
 

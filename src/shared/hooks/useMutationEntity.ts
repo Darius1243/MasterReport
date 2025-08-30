@@ -7,12 +7,12 @@ interface MutationEntityOptions {
 	createQuery: DocumentNode
 	updateQuery: DocumentNode
 	deleteQuery: DocumentNode
-	refetchQuery: DocumentNode
+	refetchQueries: DocumentNode[]
 	entityNameRu: string // e.g. 'вида работ'
 }
 
 export function useMutationEntity(options: MutationEntityOptions, id?: number) {
-	const { getByIdQuery, createQuery, updateQuery, deleteQuery, refetchQuery, entityNameRu } = options
+	const { getByIdQuery, createQuery, updateQuery, deleteQuery, refetchQueries, entityNameRu } = options
 
 	const entityQuery = useQuery(getByIdQuery, {
 		variables: { id: id as number },
@@ -20,15 +20,15 @@ export function useMutationEntity(options: MutationEntityOptions, id?: number) {
 	})
 
 	const [createEntityMutation, createEntityResult] = useMutation(createQuery, {
-		refetchQueries: [{ query: refetchQuery }],
+		refetchQueries: refetchQueries.map(query => ({ query })),
 	})
 
 	const [updateEntityMutation, updateEntityResult] = useMutation(updateQuery, {
-		refetchQueries: [{ query: refetchQuery }],
+		refetchQueries: refetchQueries.map(query => ({ query })),
 	})
 
 	const [deleteEntityMutation, deleteEntityResult] = useMutation(deleteQuery, {
-		refetchQueries: [{ query: refetchQuery }],
+		refetchQueries: refetchQueries.map(query => ({ query })),
 	})
 
 	useEffect(() => {

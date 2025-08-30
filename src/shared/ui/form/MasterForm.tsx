@@ -45,7 +45,7 @@ export const MasterForm = ({
 	const methods = useForm({
 		mode: 'onChange',
 		resolver: useYupValidationResolver(validationSchema),
-		defaultValues: useGetDefaultValues({ fields }),
+		defaultValues: useGetDefaultValues(fields, data),
 	})
 
 	useEffect(() => {

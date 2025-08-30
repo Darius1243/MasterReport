@@ -14,7 +14,6 @@ export const Inflow = () => {
 			elements={widget}
 			crud={{ create, update }}
 			error={undefined}
-			refetch={() => {}}
 			isLoading={isLoading}
 		/>
 	)

@@ -91,23 +91,11 @@ export function generateValidations(fields: IFields) {
 			case DATE:
 			case DATE_FORM:
 			case DATETIME: {
-				validations[field.name] = Yup.date()
-					.transform(value => {
-						if (!value) {
-							return undefined
-						}
-						return isValidDate(value)
-							? value
-							: new Yup.ValidationError(VALIDATION_MESSAGES.INVALID_DATE)
-					})
-					.test('is-date', VALIDATION_MESSAGES.INVALID_DATE, value =>
-						!value ? true : isValidDate(value)
-					)
+				let schema = Yup.date().typeError(VALIDATION_MESSAGES.INVALID_DATE)
 				if (field.required) {
-					validations[field.name] = validations[field.name].required(
-						VALIDATION_MESSAGES.REQUIRED
-					)
+					schema = schema.required(VALIDATION_MESSAGES.REQUIRED)
 				}
+				validations[field.name] = schema
 				break
 			}
 			case PHONE:

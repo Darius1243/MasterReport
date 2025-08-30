@@ -961,6 +961,7 @@ export type OutflowApiCreateInput = {
   amount: Scalars['Float']['input'];
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
+  documentType: Scalars['Int']['input'];
   facility: Scalars['Int']['input'];
   person: Scalars['Int']['input'];
 };

@@ -1,5 +1,6 @@
 import {
 	DeleteOutflowMutationHookResult,
+	GetPersonsWithStatisticsDocument,
 	useCreateOutflowMutation,
 	useDeleteOutflowMutation,
 	useUpdateOutflowMutation,
@@ -7,12 +8,15 @@ import {
 import { showToastPromise } from '@/shared/ui/toast'
 
 export function useMutationOutflow() {
-	const [createOutflowMutation, createOutflowResult] =
-		useCreateOutflowMutation()
-	const [updateOutflowMutation, updateOutflowResult] =
-		useUpdateOutflowMutation()
-	const [deleteOutflowMutation, deleteOutflowResult] =
-		useDeleteOutflowMutation()
+	const [createOutflowMutation, createOutflowResult] = useCreateOutflowMutation(
+		{ refetchQueries: [{ query: GetPersonsWithStatisticsDocument }] }
+	)
+	const [updateOutflowMutation, updateOutflowResult] = useUpdateOutflowMutation(
+		{ refetchQueries: [{ query: GetPersonsWithStatisticsDocument }] }
+	)
+	const [deleteOutflowMutation, deleteOutflowResult] = useDeleteOutflowMutation(
+		{ refetchQueries: [{ query: GetPersonsWithStatisticsDocument }] }
+	)
 
 	const handleDeleteOutflow: DeleteOutflowMutationHookResult[0] = async (
 		...args

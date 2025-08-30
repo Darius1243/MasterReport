@@ -1,6 +1,6 @@
 import { useGetPersonsWithStatistics } from '@/shared/hooks/person'
 import { isEmpty } from '@/shared/libs'
-import { NoData } from '@/shared/ui'
+import { AmountButton, NoData } from '@/shared/ui'
 import { MuiList, MuiListItem } from '@/shared/ui/mui'
 import { ListSkeleton } from '@/shared/ui/skeleton'
 import { InflowByPerson } from '@features/inflow/ui'
@@ -12,6 +12,7 @@ const HEADERS = [
 	{ title: 'Имя' },
 	{ title: 'Приход, ₽' },
 	{ title: 'Расход, ₽' },
+	{ title: 'Баланс, ₽' },
 ]
 
 export const PersonsWithStatistics = ({ sx, ...props }: BoxProps) => {
@@ -36,21 +37,37 @@ export const PersonsWithStatistics = ({ sx, ...props }: BoxProps) => {
 			</Box>
 
 			<MuiList>
-				{data?.map(({ id, name, totalInflowAmount, totalOutflowAmount }) => (
-					<MuiListItem key={id}>
-						<Typography variant='body1' sx={{ flex: 1, textAlign: 'left' }}>
-							{name}
-						</Typography>
+				{data?.map(({ id, name, totalInflowAmount, totalOutflowAmount }) => {
+					const balance = totalInflowAmount - totalOutflowAmount
 
-						<Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-							<InflowByPerson id={id} amount={totalInflowAmount} />
-						</Box>
+					return (
+						<MuiListItem key={id}>
+							<Typography variant='body1' sx={{ flex: 1, textAlign: 'left' }}>
+								{name}
+							</Typography>
 
-						<Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
-							<OutflowByPerson id={id} amount={-totalOutflowAmount} />
-						</Box>
-					</MuiListItem>
-				))}
+							<Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+								<InflowByPerson id={id} amount={totalInflowAmount} />
+							</Box>
+
+							<Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+								<OutflowByPerson id={id} amount={-totalOutflowAmount} />
+							</Box>
+
+							<Box
+								sx={{
+									flex: 1,
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									gap: 1,
+								}}
+							>
+								<AmountButton amount={balance} isBalance />
+							</Box>
+						</MuiListItem>
+					)
+				})}
 			</MuiList>
 		</Box>
 	)
