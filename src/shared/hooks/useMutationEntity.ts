@@ -1,5 +1,6 @@
-import { useMutation, useQuery, DocumentNode } from '@apollo/client'
 import { showToastError, showToastPromise } from '@/shared/ui/toast'
+import { DocumentNode } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client/react'
 import { useEffect } from 'react'
 
 interface MutationEntityOptions {
@@ -8,11 +9,18 @@ interface MutationEntityOptions {
 	updateQuery: DocumentNode
 	deleteQuery: DocumentNode
 	refetchQueries: DocumentNode[]
-	entityNameRu: string // e.g. 'вида работ'
+	entityNameRu: string
 }
 
 export function useMutationEntity(options: MutationEntityOptions, id?: number) {
-	const { getByIdQuery, createQuery, updateQuery, deleteQuery, refetchQueries, entityNameRu } = options
+	const {
+		getByIdQuery,
+		createQuery,
+		updateQuery,
+		deleteQuery,
+		refetchQueries,
+		entityNameRu,
+	} = options
 
 	const entityQuery = useQuery(getByIdQuery, {
 		variables: { id: id as number },
@@ -33,9 +41,12 @@ export function useMutationEntity(options: MutationEntityOptions, id?: number) {
 
 	useEffect(() => {
 		if (entityQuery.error) {
-			showToastError(`Ошибка при загрузке данных ${entityNameRu}`, entityQuery.error)
+			showToastError(
+				`Ошибка при загрузке данных ${entityNameRu}`,
+				entityQuery.error
+			)
 		}
-	}, [entityQuery.error])
+	}, [entityQuery.error, entityNameRu])
 
 	const handleDeleteEntity = async (...args: any[]) => {
 		return showToastPromise(deleteEntityMutation(...args), {
