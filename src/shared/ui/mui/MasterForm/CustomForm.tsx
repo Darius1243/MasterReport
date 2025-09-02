@@ -1,22 +1,24 @@
+import { isEmpty } from '@/shared/libs'
+import { TData } from '@/shared/model/types'
 import Box from '@mui/material/Box'
-import { FormEventHandler, KeyboardEvent } from 'react'
-import { FormProvider } from 'react-hook-form'
+import { KeyboardEvent } from 'react'
+import { FormProvider, UseFormReturn } from 'react-hook-form'
 import { Button } from '../Button'
 
 interface IFormProps {
-	methods: any
-	onSubmit: FormEventHandler<HTMLFormElement>
-	children: React.ReactNode
-	additionalChildren?: React.ReactNode
+	methods: UseFormReturn<any>
+	onSubmit: (data: TData) => Promise<void>
 	style?: React.CSSProperties
-	isVisible?: boolean
+	isLoading?: boolean
+	additionalChildren?: React.ReactNode
+	children: React.ReactNode
 }
 
 export const CustomForm = ({
 	methods,
 	onSubmit,
-	isVisible,
 	additionalChildren,
+	isLoading,
 	children,
 }: IFormProps) => {
 	const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
@@ -25,18 +27,24 @@ export const CustomForm = ({
 		}
 	}
 
+	const { isValid: _isValid, dirtyFields, errors } = methods.formState
+
+	const isDirty = !isEmpty(dirtyFields)
+	const isValid = !isLoading && _isValid && isEmpty(errors)
+	const isVisible = isValid && isDirty
+
 	return (
 		<FormProvider {...methods}>
 			<form
-				onSubmit={onSubmit}
+				onSubmit={methods.handleSubmit(onSubmit)}
+				onKeyDown={e => checkKeyDown(e)}
+				noValidate
 				style={{
 					flex: 1,
 					display: 'flex',
 					flexDirection: 'column',
 					overflow: 'hidden',
 				}}
-				onKeyDown={e => checkKeyDown(e)}
-				noValidate
 			>
 				{children}
 

@@ -348,6 +348,13 @@ export type InflowUncheckedCreateNestedManyWithoutFacilityInput = {
   createMany?: InputMaybe<InflowCreateManyFacilityInputEnvelope>;
 };
 
+export type InflowUncheckedCreateNestedManyWithoutJobInput = {
+  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<InflowCreateWithoutJobInput>>;
+  createMany?: InputMaybe<InflowCreateManyJobInputEnvelope>;
+};
+
 export type InflowUncheckedCreateNestedManyWithoutPersonInput = {
   connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutPersonInput>>;
@@ -413,6 +420,31 @@ export type InflowUncheckedUpdateManyWithoutFacilityNestedInput = {
   upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutFacilityInput>>;
 };
 
+export type InflowUncheckedUpdateManyWithoutJobInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type InflowUncheckedUpdateManyWithoutJobNestedInput = {
+  connect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<InflowCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<InflowCreateWithoutJobInput>>;
+  createMany?: InputMaybe<InflowCreateManyJobInputEnvelope>;
+  delete?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<InflowScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  set?: InputMaybe<Array<InflowWhereUniqueInput>>;
+  update?: InputMaybe<Array<InflowUpdateWithWhereUniqueWithoutJobInput>>;
+  updateMany?: InputMaybe<Array<InflowUpdateManyWithWhereWithoutJobInput>>;
+  upsert?: InputMaybe<Array<InflowUpsertWithWhereUniqueWithoutJobInput>>;
+};
+
 export type InflowUncheckedUpdateManyWithoutPersonInput = {
   amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -449,6 +481,17 @@ export type InflowUncheckedUpdateWithoutFacilityInput = {
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
+export type InflowUncheckedUpdateWithoutJobInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
 export type InflowUncheckedUpdateWithoutPersonInput = {
   amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -476,6 +519,11 @@ export type InflowUpdateManyWithWhereWithoutFacilityInput = {
   where: InflowScalarWhereInput;
 };
 
+export type InflowUpdateManyWithWhereWithoutJobInput = {
+  data: InflowUncheckedUpdateManyWithoutJobInput;
+  where: InflowScalarWhereInput;
+};
+
 export type InflowUpdateManyWithWhereWithoutPersonInput = {
   data: InflowUncheckedUpdateManyWithoutPersonInput;
   where: InflowScalarWhereInput;
@@ -483,6 +531,11 @@ export type InflowUpdateManyWithWhereWithoutPersonInput = {
 
 export type InflowUpdateWithWhereUniqueWithoutFacilityInput = {
   data: InflowUncheckedUpdateWithoutFacilityInput;
+  where: InflowWhereUniqueInput;
+};
+
+export type InflowUpdateWithWhereUniqueWithoutJobInput = {
+  data: InflowUncheckedUpdateWithoutJobInput;
   where: InflowWhereUniqueInput;
 };
 
@@ -494,6 +547,12 @@ export type InflowUpdateWithWhereUniqueWithoutPersonInput = {
 export type InflowUpsertWithWhereUniqueWithoutFacilityInput = {
   create: InflowUncheckedCreateWithoutFacilityInput;
   update: InflowUncheckedUpdateWithoutFacilityInput;
+  where: InflowWhereUniqueInput;
+};
+
+export type InflowUpsertWithWhereUniqueWithoutJobInput = {
+  create: InflowUncheckedCreateWithoutJobInput;
+  update: InflowUncheckedUpdateWithoutJobInput;
   where: InflowWhereUniqueInput;
 };
 
@@ -579,6 +638,7 @@ export type Job = {
 export type JobCount = {
   __typename?: 'JobCount';
   inflows: Scalars['Int']['output'];
+  outflows: Scalars['Int']['output'];
 };
 
 
@@ -586,9 +646,15 @@ export type JobCountInflowsArgs = {
   where?: InputMaybe<InflowWhereInput>;
 };
 
+
+export type JobCountOutflowsArgs = {
+  where?: InputMaybe<OutflowWhereInput>;
+};
+
 export type JobCreateInput = {
   inflows?: InputMaybe<InflowCreateNestedManyWithoutJobInput>;
   name: Scalars['String']['input'];
+  outflows?: InputMaybe<OutflowCreateNestedManyWithoutJobInput>;
 };
 
 export type JobCreateNestedOneWithoutInflowsInput = {
@@ -597,8 +663,19 @@ export type JobCreateNestedOneWithoutInflowsInput = {
   create?: InputMaybe<JobUncheckedCreateWithoutInflowsInput>;
 };
 
+export type JobCreateNestedOneWithoutOutflowsInput = {
+  connect?: InputMaybe<JobWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<JobCreateOrConnectWithoutOutflowsInput>;
+  create?: InputMaybe<JobUncheckedCreateWithoutOutflowsInput>;
+};
+
 export type JobCreateOrConnectWithoutInflowsInput = {
   create: JobUncheckedCreateWithoutInflowsInput;
+  where: JobWhereUniqueInput;
+};
+
+export type JobCreateOrConnectWithoutOutflowsInput = {
+  create: JobUncheckedCreateWithoutOutflowsInput;
   where: JobWhereUniqueInput;
 };
 
@@ -610,10 +687,24 @@ export type JobNullableRelationFilter = {
 export type JobUncheckedCreateWithoutInflowsInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   name: Scalars['String']['input'];
+  outflows?: InputMaybe<OutflowUncheckedCreateNestedManyWithoutJobInput>;
+};
+
+export type JobUncheckedCreateWithoutOutflowsInput = {
+  id?: InputMaybe<Scalars['Int']['input']>;
+  inflows?: InputMaybe<InflowUncheckedCreateNestedManyWithoutJobInput>;
+  name: Scalars['String']['input'];
 };
 
 export type JobUncheckedUpdateWithoutInflowsInput = {
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  outflows?: InputMaybe<OutflowUncheckedUpdateManyWithoutJobNestedInput>;
+};
+
+export type JobUncheckedUpdateWithoutOutflowsInput = {
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  inflows?: InputMaybe<InflowUncheckedUpdateManyWithoutJobNestedInput>;
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
@@ -627,6 +718,16 @@ export type JobUpdateOneWithoutInflowsNestedInput = {
   upsert?: InputMaybe<JobUpsertWithoutInflowsInput>;
 };
 
+export type JobUpdateOneWithoutOutflowsNestedInput = {
+  connect?: InputMaybe<JobWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<JobCreateOrConnectWithoutOutflowsInput>;
+  create?: InputMaybe<JobUncheckedCreateWithoutOutflowsInput>;
+  delete?: InputMaybe<JobWhereInput>;
+  disconnect?: InputMaybe<JobWhereInput>;
+  update?: InputMaybe<JobUncheckedUpdateWithoutOutflowsInput>;
+  upsert?: InputMaybe<JobUpsertWithoutOutflowsInput>;
+};
+
 export type JobUpdateSimpleInput = {
   name?: InputMaybe<Scalars['String']['input']>;
 };
@@ -637,6 +738,12 @@ export type JobUpsertWithoutInflowsInput = {
   where?: InputMaybe<JobWhereInput>;
 };
 
+export type JobUpsertWithoutOutflowsInput = {
+  create: JobUncheckedCreateWithoutOutflowsInput;
+  update: JobUncheckedUpdateWithoutOutflowsInput;
+  where?: InputMaybe<JobWhereInput>;
+};
+
 export type JobWhereInput = {
   AND?: InputMaybe<Array<JobWhereInput>>;
   NOT?: InputMaybe<Array<JobWhereInput>>;
@@ -644,6 +751,7 @@ export type JobWhereInput = {
   id?: InputMaybe<IntFilter>;
   inflows?: InputMaybe<InflowListRelationFilter>;
   name?: InputMaybe<StringFilter>;
+  outflows?: InputMaybe<OutflowListRelationFilter>;
 };
 
 export type JobWhereUniqueInput = {
@@ -653,6 +761,7 @@ export type JobWhereUniqueInput = {
   id?: InputMaybe<Scalars['Int']['input']>;
   inflows?: InputMaybe<InflowListRelationFilter>;
   name?: InputMaybe<Scalars['String']['input']>;
+  outflows?: InputMaybe<OutflowListRelationFilter>;
 };
 
 export type Mutation = {
@@ -847,6 +956,8 @@ export type Outflow = {
   facility: Facility;
   facilityId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
+  job?: Maybe<Job>;
+  jobId?: Maybe<Scalars['Int']['output']>;
   person: Person;
   personId: Scalars['Int']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
@@ -857,6 +968,7 @@ export type OutflowApiCreateInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   facility: Scalars['Int']['input'];
+  job?: InputMaybe<Scalars['Int']['input']>;
   person: Scalars['Int']['input'];
 };
 
@@ -866,12 +978,28 @@ export type OutflowCreateManyFacilityInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   personId: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
 export type OutflowCreateManyFacilityInputEnvelope = {
   data: Array<OutflowCreateManyFacilityInput>;
+};
+
+export type OutflowCreateManyJobInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facilityId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
+  personId: Scalars['Int']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowCreateManyJobInputEnvelope = {
+  data: Array<OutflowCreateManyJobInput>;
 };
 
 export type OutflowCreateManyPersonInput = {
@@ -881,6 +1009,7 @@ export type OutflowCreateManyPersonInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   facilityId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -895,6 +1024,13 @@ export type OutflowCreateNestedManyWithoutFacilityInput = {
   createMany?: InputMaybe<OutflowCreateManyFacilityInputEnvelope>;
 };
 
+export type OutflowCreateNestedManyWithoutJobInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutJobInput>>;
+  createMany?: InputMaybe<OutflowCreateManyJobInputEnvelope>;
+};
+
 export type OutflowCreateNestedManyWithoutPersonInput = {
   connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
   connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutPersonInput>>;
@@ -904,6 +1040,11 @@ export type OutflowCreateNestedManyWithoutPersonInput = {
 
 export type OutflowCreateOrConnectWithoutFacilityInput = {
   create: OutflowUncheckedCreateWithoutFacilityInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowCreateOrConnectWithoutJobInput = {
+  create: OutflowUncheckedCreateWithoutJobInput;
   where: OutflowWhereUniqueInput;
 };
 
@@ -917,6 +1058,17 @@ export type OutflowCreateWithoutFacilityInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
+  job?: InputMaybe<JobCreateNestedOneWithoutOutflowsInput>;
+  person: PersonCreateNestedOneWithoutOutflowsInput;
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowCreateWithoutJobInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facility: FacilityCreateNestedOneWithoutOutflowInput;
   person: PersonCreateNestedOneWithoutOutflowsInput;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -927,6 +1079,7 @@ export type OutflowCreateWithoutPersonInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   facility: FacilityCreateNestedOneWithoutOutflowInput;
+  job?: InputMaybe<JobCreateNestedOneWithoutOutflowsInput>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -946,6 +1099,7 @@ export type OutflowScalarWhereInput = {
   description?: InputMaybe<StringNullableFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
+  jobId?: InputMaybe<IntNullableFilter>;
   personId?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -955,6 +1109,13 @@ export type OutflowUncheckedCreateNestedManyWithoutFacilityInput = {
   connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutFacilityInput>>;
   create?: InputMaybe<Array<OutflowCreateWithoutFacilityInput>>;
   createMany?: InputMaybe<OutflowCreateManyFacilityInputEnvelope>;
+};
+
+export type OutflowUncheckedCreateNestedManyWithoutJobInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutJobInput>>;
+  createMany?: InputMaybe<OutflowCreateManyJobInputEnvelope>;
 };
 
 export type OutflowUncheckedCreateNestedManyWithoutPersonInput = {
@@ -970,6 +1131,18 @@ export type OutflowUncheckedCreateWithoutFacilityInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  jobId?: InputMaybe<Scalars['Int']['input']>;
+  personId: Scalars['Int']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+};
+
+export type OutflowUncheckedCreateWithoutJobInput = {
+  amount: Scalars['Float']['input'];
+  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
+  date: Scalars['DateTimeISO']['input'];
+  description?: InputMaybe<Scalars['String']['input']>;
+  facilityId: Scalars['Int']['input'];
+  id?: InputMaybe<Scalars['Int']['input']>;
   personId: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -981,6 +1154,7 @@ export type OutflowUncheckedCreateWithoutPersonInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   facilityId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -990,6 +1164,7 @@ export type OutflowUncheckedUpdateManyWithoutFacilityInput = {
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -1008,6 +1183,31 @@ export type OutflowUncheckedUpdateManyWithoutFacilityNestedInput = {
   upsert?: InputMaybe<Array<OutflowUpsertWithWhereUniqueWithoutFacilityInput>>;
 };
 
+export type OutflowUncheckedUpdateManyWithoutJobInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUncheckedUpdateManyWithoutJobNestedInput = {
+  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<OutflowCreateWithoutJobInput>>;
+  createMany?: InputMaybe<OutflowCreateManyJobInputEnvelope>;
+  delete?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<OutflowScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  set?: InputMaybe<Array<OutflowWhereUniqueInput>>;
+  update?: InputMaybe<Array<OutflowUpdateWithWhereUniqueWithoutJobInput>>;
+  updateMany?: InputMaybe<Array<OutflowUpdateManyWithWhereWithoutJobInput>>;
+  upsert?: InputMaybe<Array<OutflowUpsertWithWhereUniqueWithoutJobInput>>;
+};
+
 export type OutflowUncheckedUpdateManyWithoutPersonInput = {
   amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1015,6 +1215,7 @@ export type OutflowUncheckedUpdateManyWithoutPersonInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -1038,6 +1239,18 @@ export type OutflowUncheckedUpdateWithoutFacilityInput = {
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
+  personId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type OutflowUncheckedUpdateWithoutJobInput = {
+  amount?: InputMaybe<FloatFieldUpdateOperationsInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  id?: InputMaybe<IntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -1049,6 +1262,7 @@ export type OutflowUncheckedUpdateWithoutPersonInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -1058,12 +1272,18 @@ export type OutflowUpdateInput = {
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   facility?: InputMaybe<FacilityUpdateOneRequiredWithoutOutflowNestedInput>;
+  job?: InputMaybe<JobUpdateOneWithoutOutflowsNestedInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutOutflowsNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
 export type OutflowUpdateManyWithWhereWithoutFacilityInput = {
   data: OutflowUncheckedUpdateManyWithoutFacilityInput;
+  where: OutflowScalarWhereInput;
+};
+
+export type OutflowUpdateManyWithWhereWithoutJobInput = {
+  data: OutflowUncheckedUpdateManyWithoutJobInput;
   where: OutflowScalarWhereInput;
 };
 
@@ -1077,6 +1297,11 @@ export type OutflowUpdateWithWhereUniqueWithoutFacilityInput = {
   where: OutflowWhereUniqueInput;
 };
 
+export type OutflowUpdateWithWhereUniqueWithoutJobInput = {
+  data: OutflowUncheckedUpdateWithoutJobInput;
+  where: OutflowWhereUniqueInput;
+};
+
 export type OutflowUpdateWithWhereUniqueWithoutPersonInput = {
   data: OutflowUncheckedUpdateWithoutPersonInput;
   where: OutflowWhereUniqueInput;
@@ -1085,6 +1310,12 @@ export type OutflowUpdateWithWhereUniqueWithoutPersonInput = {
 export type OutflowUpsertWithWhereUniqueWithoutFacilityInput = {
   create: OutflowUncheckedCreateWithoutFacilityInput;
   update: OutflowUncheckedUpdateWithoutFacilityInput;
+  where: OutflowWhereUniqueInput;
+};
+
+export type OutflowUpsertWithWhereUniqueWithoutJobInput = {
+  create: OutflowUncheckedCreateWithoutJobInput;
+  update: OutflowUncheckedUpdateWithoutJobInput;
   where: OutflowWhereUniqueInput;
 };
 
@@ -1105,6 +1336,8 @@ export type OutflowWhereInput = {
   facility?: InputMaybe<FacilityRelationFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
+  job?: InputMaybe<JobNullableRelationFilter>;
+  jobId?: InputMaybe<IntNullableFilter>;
   person?: InputMaybe<PersonRelationFilter>;
   personId?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -1121,6 +1354,8 @@ export type OutflowWhereUniqueInput = {
   facility?: InputMaybe<FacilityRelationFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
+  job?: InputMaybe<JobNullableRelationFilter>;
+  jobId?: InputMaybe<IntNullableFilter>;
   person?: InputMaybe<PersonRelationFilter>;
   personId?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;

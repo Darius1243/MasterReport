@@ -1,7 +1,11 @@
 import { useCallback } from 'react'
+import { IFields } from '../model/types/TypeInputField'
+import { generateValidations } from '../ui/mui/MasterForm/generateValidations'
 
-export const useYupValidationResolver = validationSchema =>
-	useCallback(
+export const useYupValidationResolver = (fields: IFields) => {
+	const validationSchema = generateValidations(fields)
+
+	return useCallback(
 		async data => {
 			if (typeof data !== 'object' || Array.isArray(data)) {
 				console.error('Data must be an object', data)
@@ -39,10 +43,11 @@ export const useYupValidationResolver = validationSchema =>
 								message: currentError.message,
 							},
 						}),
-						{},
+						{}
 					),
 				}
 			}
 		},
-		[validationSchema],
+		[validationSchema]
 	)
+}

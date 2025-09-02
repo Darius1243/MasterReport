@@ -7,7 +7,7 @@ import { MonetaryList } from '@/shared/ui/monetaryList'
 const inflowFields: FieldConfig<Inflow>[] = [
 	{ render: item => item.person.name },
 	{ render: item => item.facility.name },
-	{ render: item => item.job.name },
+	{ render: item => item.job?.name },
 	{ render: v => <AmountButton amount={v.amount} /> },
 	{ render: v => formatDate(v.date) },
 ]

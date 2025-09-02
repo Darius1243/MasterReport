@@ -3,10 +3,9 @@ import { UseFormReturn } from 'react-hook-form'
 import { isEmpty } from '../libs'
 
 export const useAutoFocus = (
-	methods: UseFormReturn<any>,
 	data: Record<string, any> | null | undefined,
-	setData: (data: any, methods: UseFormReturn<any>) => void,
-	fields: Record<string, any>
+	fields: Record<string, any>,
+	methods: UseFormReturn<any>
 ) => {
 	const { setFocus } = methods
 
@@ -28,5 +27,10 @@ export const useAutoFocus = (
 				}
 			}, 50)
 		}
-	}, [data, fields, setFocus, setData, methods])
+	}, [data, fields, setFocus, methods])
+}
+
+const setData = (data: FormData, methods: UseFormReturn) => {
+	methods.reset(data)
+	methods.trigger()
 }
