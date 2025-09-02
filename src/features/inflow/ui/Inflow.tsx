@@ -13,7 +13,6 @@ export const Inflow = () => {
 		<MasterForm
 			elements={widget}
 			crud={{ create, update }}
-			error={undefined}
 			isLoading={isLoading}
 		/>
 	)

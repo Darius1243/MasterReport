@@ -1,10 +1,8 @@
-import { TData } from './TData'
-
-export interface IOnSubmit {
+export interface IOnSubmit<TCreate, TUpdate> {
 	id: number | undefined
-	data: TData
-	create: (args: { variables: { data: any } }) => Promise<any>
-	update: (args: { variables: { id: number; data: any } }) => Promise<any>
+	data: Record<string, any>
+	create: (args: { variables: { data: TCreate } }) => Promise<any>
+	update: (args: { variables: { id: number; data: TUpdate } }) => Promise<any>
 	reset: () => void
 	refetch?: () => void
 	onCloseModal?: () => void

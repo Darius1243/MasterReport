@@ -7,7 +7,7 @@ const TEXTS = {
 	error: 'Ошибка при сохранении данных 😥',
 }
 
-export const onSubmit = async ({
+export const onSubmit = async <TCreate extends object, TUpdate extends object>({
 	id,
 	data,
 	update,
@@ -15,7 +15,7 @@ export const onSubmit = async ({
 	reset,
 	refetch,
 	onCloseModal,
-}: IOnSubmit) => {
+}: IOnSubmit<TCreate, TUpdate>) => {
 	const dataToSubmit = Object.fromEntries(
 		Object.entries(data).filter(([key]) => !key.startsWith('_'))
 	)
@@ -26,8 +26,8 @@ export const onSubmit = async ({
 
 	const submitPromise = async () => {
 		const response = await (id
-			? update({ variables: { id, data: dataToSubmit } })
-			: create({ variables: { data: dataToSubmit } }))
+			? update({ variables: { id, data: dataToSubmit as TUpdate } })
+			: create({ variables: { data: dataToSubmit as TCreate } }))
 
 		reset()
 		refetch?.()

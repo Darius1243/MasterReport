@@ -7,7 +7,7 @@ import { ContainerRenderInputFields } from './ContainerRenderInputFields'
 import { CustomForm } from './CustomForm'
 import { onSubmit } from './lib'
 
-export const MasterForm = ({
+export const MasterForm = <TCreate extends object, TUpdate extends object>({
 	id,
 	data,
 	error,
@@ -17,7 +17,7 @@ export const MasterForm = ({
 	crud: { create, update },
 	onCloseModal,
 	children,
-}: IMasterForm) => {
+}: IMasterForm<TCreate, TUpdate>) => {
 	const methods = useForm({
 		mode: 'onChange',
 		resolver: useYupValidationResolver(fields),
