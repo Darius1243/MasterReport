@@ -56,7 +56,7 @@ export const ResponsiveGrid = ({
 				overflow: _container ? 'auto' : 'hidden',
 				display: isDisplayNone ? 'none' : container ? 'flex' : 'block',
 				flexWrap: container ? 'wrap' : 'nowrap',
-				alignContent: item ? 'baseline' : 'stretch',
+				alignContent: 'baseline',
 				borderRadius:
 					(container && item) || componentType === 'table'
 						? BORDER_RADIUS

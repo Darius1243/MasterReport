@@ -1,6 +1,6 @@
 import { IFields } from '@/shared/model/types/TypeInputField'
 import { DeleteButtonWithDialog } from '@/shared/ui'
-import { MasterForm } from '@/shared/ui/form'
+import { MasterForm } from '@/shared/ui/mui/MasterForm/MasterForm'
 import { ApolloError } from '@apollo/client'
 
 interface IEntityDetailsProps<

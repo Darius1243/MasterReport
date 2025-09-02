@@ -1,4 +1,4 @@
-import { isEmpty, isValidDate, toNumber } from '@/shared/libs'
+import { isEmpty, toNumber } from '@/shared/libs'
 import {
 	AUTOCOMPLETE,
 	AUTOCOMPLETE_FORM,
@@ -34,24 +34,10 @@ export function generateValidations(fields: IFields) {
 			case AUTOCOMPLETE:
 			case AUTOCOMPLETE_FORM:
 			case AUTOCOMPLETE_MRTABLE: {
-				if (field.valueKey === 'id') {
+				if (field.required) {
 					validations[field.name] = Yup.number().typeError(
 						VALIDATION_MESSAGES.REQUIRED
 					)
-
-					if (field.required) {
-						validations[field.name] = validations[field.name].required(
-							VALIDATION_MESSAGES.REQUIRED
-						)
-					}
-				} else {
-					validations[field.name] = Yup.string()
-
-					if (field.required) {
-						validations[field.name] = validations[field.name].required(
-							VALIDATION_MESSAGES.REQUIRED
-						)
-					}
 				}
 
 				break

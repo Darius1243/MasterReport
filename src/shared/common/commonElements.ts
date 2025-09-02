@@ -32,3 +32,11 @@ export const DATE_FIELD: TField = {
 	type: 'date-form',
 	required: true,
 }
+
+export const JOB_FIELD: TField = {
+	name: 'job',
+	label: 'Вид работы',
+	type: 'autocomplete-form',
+	valueKey: 'id',
+	labelKeys: { rootLabel: 'name' },
+}

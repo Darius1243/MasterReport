@@ -1,6 +1,5 @@
-export * from './personQueries'
 export * from './facilityQueries'
 export * from './inflowQueries'
 export * from './jobQueries'
 export * from './outflowQueries'
-export * from './documentTypeQueries'
+export * from './personQueries'

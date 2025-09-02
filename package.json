@@ -13,14 +13,14 @@
 		"codegen": "graphql-codegen --config codegen.yml"
 	},
 	"dependencies": {
-		"@apollo/client": "4.0.3",
+		"@apollo/client": "^3.13.8",
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.1",
 		"@mui/icons-material": "^7.3.1",
 		"@mui/material": "^7.3.1",
 		"@mui/x-date-pickers": "^8.11.0",
 		"apollo-server-express": "^3.13.0",
-		"dayjs": "^1.11.15",
+		"dayjs": "^1.11.18",
 		"graphql": "^16.11.0",
 		"html5-qrcode": "^2.3.8",
 		"i18next": "^25.4.2",
@@ -34,7 +34,6 @@
 		"react-number-format": "^5.4.4",
 		"react-router": "^7.8.2",
 		"react-toastify": "^11.0.5",
-		"rxjs": "^7.8.2",
 		"yup": "^1.7.0",
 		"zustand": "^5.0.8"
 	},

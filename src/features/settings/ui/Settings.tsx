@@ -1,14 +1,12 @@
-import { MuiTabs } from '@/shared/ui/mui'
-import { DocumentTypesList } from '@/features/documentType/ui'
-import { FacilitiesList } from '@features/facilities/ui'
 import { JobList } from '@/features/job/ui/JobsList'
 import { PersonsList } from '@/features/persons/ui'
+import { MuiTabs } from '@/shared/ui/mui'
+import { FacilitiesList } from '@features/facilities/ui'
 
 const TABS = [
 	{ label: 'Лица', component: <PersonsList /> },
 	{ label: 'Объекты', component: <FacilitiesList /> },
 	{ label: 'Виды работ', component: <JobList /> },
-	{ label: 'Виды документов', component: <DocumentTypesList /> },
 ]
 
 export const Settings = () => {

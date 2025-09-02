@@ -1,4 +1,4 @@
-import { ApolloProvider } from '@apollo/client/react'
+import { ApolloProvider } from '@apollo/client'
 import { CssBaseline } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles'
 import { LocalizationProvider } from '@mui/x-date-pickers'

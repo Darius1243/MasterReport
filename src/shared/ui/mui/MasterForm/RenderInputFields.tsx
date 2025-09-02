@@ -1,17 +1,13 @@
 import { isEmpty } from '@/shared/libs'
 import * as constants from '@/shared/model/constants/constants'
-import { IFields, TField } from '@/shared/model/types/TypeInputField'
+import { IRenderInputFields } from '@/shared/model/types'
+import { TField } from '@/shared/model/types/TypeInputField'
 import { ResponsiveGrid } from '../../responsiveGrid'
 import { AutocompleteForm } from '../Autocomplete'
 import { CheckBoxForm } from '../CheckBox'
 import { DatePickerForm, DateTimePickerForm } from '../DatePicker'
 import { InputFieldForm, NumberFieldForm } from '../InputField'
 import { RadioGroupForm } from '../RadioGroup'
-
-interface IRenderInputFields {
-	fields: IFields
-	isLoading: boolean
-}
 
 export const RenderInputFields = ({
 	fields,

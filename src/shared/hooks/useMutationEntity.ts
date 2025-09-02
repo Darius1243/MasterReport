@@ -1,6 +1,5 @@
 import { showToastError, showToastPromise } from '@/shared/ui/toast'
-import { DocumentNode } from '@apollo/client'
-import { useMutation, useQuery } from '@apollo/client/react'
+import { DocumentNode, useMutation, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 
 interface MutationEntityOptions {

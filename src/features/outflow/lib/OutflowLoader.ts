@@ -1,7 +1,7 @@
 import { apolloClient } from '@/apolloClient'
-import { GET_ALL_DOCUMENT_TYPES } from '@/entities/user/api/documentTypeQueries'
 import {
 	GetAllFacilitiesDocument,
+	GetAllJobsDocument,
 	GetAllPersonsDocument,
 } from '@/generated/graphql'
 import { widgetConstructorInLoader } from '@/shared/libs/widgetConstructor'
@@ -10,21 +10,27 @@ import { IWidget } from '@/shared/model/types'
 
 export async function OutflowLoader() {
 	try {
-		const [personsResult, facilitiesResult, documentTypesResult] = await Promise.all([
+		const [personsResult, jobsResult, facilitiesResult] = await Promise.all([
 			apolloClient.query({ query: GetAllPersonsDocument }),
+			apolloClient.query({ query: GetAllJobsDocument }),
 			apolloClient.query({ query: GetAllFacilitiesDocument }),
-			apolloClient.query({ query: GET_ALL_DOCUMENT_TYPES }),
 		])
 
 		const newWidget: IWidget = {
 			...OutflowElements,
 			fields: {
 				...OutflowElements.fields,
-				person: { ...OutflowElements.fields.person, options: personsResult.data.persons },
-				facility: { ...OutflowElements.fields.facility, options: facilitiesResult.data.facilities },
-				documentType: {
-					...OutflowElements.fields.documentType,
-					options: documentTypesResult.data.documentTypes,
+				person: {
+					...OutflowElements.fields.person,
+					options: personsResult.data.persons,
+				},
+				job: {
+					...OutflowElements.fields.job,
+					options: jobsResult.data.jobs,
+				},
+				facility: {
+					...OutflowElements.fields.facility,
+					options: facilitiesResult.data.facilities,
 				},
 			},
 		}

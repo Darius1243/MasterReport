@@ -1,6 +1,5 @@
 import { showToastError } from '@/shared/ui/toast'
-import { DocumentNode } from '@apollo/client'
-import { useQuery } from '@apollo/client/react'
+import { DocumentNode, useQuery } from '@apollo/client'
 import { useEffect } from 'react'
 
 export function useGetEntities<T>(query: DocumentNode, entityName: keyof T) {

@@ -33,92 +33,6 @@ export type DateTimeFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTimeISO']['input']>>;
 };
 
-export type DocumentType = {
-  __typename?: 'DocumentType';
-  _count?: Maybe<DocumentTypeCount>;
-  id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
-};
-
-export type DocumentTypeCount = {
-  __typename?: 'DocumentTypeCount';
-  outflows: Scalars['Int']['output'];
-};
-
-
-export type DocumentTypeCountOutflowsArgs = {
-  where?: InputMaybe<OutflowWhereInput>;
-};
-
-export type DocumentTypeCreateInput = {
-  name: Scalars['String']['input'];
-  outflows?: InputMaybe<OutflowCreateNestedManyWithoutDocumentTypeInput>;
-};
-
-export type DocumentTypeCreateNestedOneWithoutOutflowsInput = {
-  connect?: InputMaybe<DocumentTypeWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<DocumentTypeCreateOrConnectWithoutOutflowsInput>;
-  create?: InputMaybe<DocumentTypeUncheckedCreateWithoutOutflowsInput>;
-};
-
-export type DocumentTypeCreateOrConnectWithoutOutflowsInput = {
-  create: DocumentTypeUncheckedCreateWithoutOutflowsInput;
-  where: DocumentTypeWhereUniqueInput;
-};
-
-export type DocumentTypeNullableRelationFilter = {
-  is?: InputMaybe<DocumentTypeWhereInput>;
-  isNot?: InputMaybe<DocumentTypeWhereInput>;
-};
-
-export type DocumentTypeUncheckedCreateWithoutOutflowsInput = {
-  id?: InputMaybe<Scalars['Int']['input']>;
-  name: Scalars['String']['input'];
-};
-
-export type DocumentTypeUncheckedUpdateWithoutOutflowsInput = {
-  id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  name?: InputMaybe<StringFieldUpdateOperationsInput>;
-};
-
-export type DocumentTypeUpdateOneWithoutOutflowsNestedInput = {
-  connect?: InputMaybe<DocumentTypeWhereUniqueInput>;
-  connectOrCreate?: InputMaybe<DocumentTypeCreateOrConnectWithoutOutflowsInput>;
-  create?: InputMaybe<DocumentTypeUncheckedCreateWithoutOutflowsInput>;
-  delete?: InputMaybe<DocumentTypeWhereInput>;
-  disconnect?: InputMaybe<DocumentTypeWhereInput>;
-  update?: InputMaybe<DocumentTypeUncheckedUpdateWithoutOutflowsInput>;
-  upsert?: InputMaybe<DocumentTypeUpsertWithoutOutflowsInput>;
-};
-
-export type DocumentTypeUpdateSimpleInput = {
-  name?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type DocumentTypeUpsertWithoutOutflowsInput = {
-  create: DocumentTypeUncheckedCreateWithoutOutflowsInput;
-  update: DocumentTypeUncheckedUpdateWithoutOutflowsInput;
-  where?: InputMaybe<DocumentTypeWhereInput>;
-};
-
-export type DocumentTypeWhereInput = {
-  AND?: InputMaybe<Array<DocumentTypeWhereInput>>;
-  NOT?: InputMaybe<Array<DocumentTypeWhereInput>>;
-  OR?: InputMaybe<Array<DocumentTypeWhereInput>>;
-  id?: InputMaybe<IntFilter>;
-  name?: InputMaybe<StringFilter>;
-  outflows?: InputMaybe<OutflowListRelationFilter>;
-};
-
-export type DocumentTypeWhereUniqueInput = {
-  AND?: InputMaybe<Array<DocumentTypeWhereInput>>;
-  NOT?: InputMaybe<Array<DocumentTypeWhereInput>>;
-  OR?: InputMaybe<Array<DocumentTypeWhereInput>>;
-  id?: InputMaybe<Scalars['Int']['input']>;
-  name?: InputMaybe<Scalars['String']['input']>;
-  outflows?: InputMaybe<OutflowListRelationFilter>;
-};
-
 export type Facility = {
   __typename?: 'Facility';
   _count?: Maybe<FacilityCount>;
@@ -279,8 +193,8 @@ export type Inflow = {
   facility: Facility;
   facilityId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
-  job: Job;
-  jobId: Scalars['Int']['output'];
+  job?: Maybe<Job>;
+  jobId?: Maybe<Scalars['Int']['output']>;
   person: Person;
   personId: Scalars['Int']['output'];
   updatedAt: Scalars['DateTimeISO']['output'];
@@ -291,7 +205,7 @@ export type InflowApiCreateInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   facility: Scalars['Int']['input'];
-  job: Scalars['Int']['input'];
+  job?: InputMaybe<Scalars['Int']['input']>;
   person: Scalars['Int']['input'];
 };
 
@@ -301,7 +215,7 @@ export type InflowCreateManyFacilityInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
-  jobId: Scalars['Int']['input'];
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   personId: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -332,7 +246,7 @@ export type InflowCreateManyPersonInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   facilityId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
-  jobId: Scalars['Int']['input'];
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -381,7 +295,7 @@ export type InflowCreateWithoutFacilityInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  job: JobCreateNestedOneWithoutInflowsInput;
+  job?: InputMaybe<JobCreateNestedOneWithoutInflowsInput>;
   person: PersonCreateNestedOneWithoutInflowsInput;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -402,7 +316,7 @@ export type InflowCreateWithoutPersonInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   facility: FacilityCreateNestedOneWithoutInflowsInput;
-  job: JobCreateNestedOneWithoutInflowsInput;
+  job?: InputMaybe<JobCreateNestedOneWithoutInflowsInput>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -422,7 +336,7 @@ export type InflowScalarWhereInput = {
   description?: InputMaybe<StringNullableFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
-  jobId?: InputMaybe<IntFilter>;
+  jobId?: InputMaybe<IntNullableFilter>;
   personId?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
 };
@@ -447,7 +361,7 @@ export type InflowUncheckedCreateWithoutFacilityInput = {
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
-  jobId: Scalars['Int']['input'];
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   personId: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -470,7 +384,7 @@ export type InflowUncheckedCreateWithoutPersonInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   facilityId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
-  jobId: Scalars['Int']['input'];
+  jobId?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
 
@@ -480,7 +394,7 @@ export type InflowUncheckedUpdateManyWithoutFacilityInput = {
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  jobId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -506,7 +420,7 @@ export type InflowUncheckedUpdateManyWithoutPersonInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  jobId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -530,7 +444,7 @@ export type InflowUncheckedUpdateWithoutFacilityInput = {
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  jobId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -542,7 +456,7 @@ export type InflowUncheckedUpdateWithoutPersonInput = {
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
-  jobId?: InputMaybe<IntFieldUpdateOperationsInput>;
+  jobId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
 
@@ -552,7 +466,7 @@ export type InflowUpdateInput = {
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
   facility?: InputMaybe<FacilityUpdateOneRequiredWithoutInflowsNestedInput>;
-  job?: InputMaybe<JobUpdateOneRequiredWithoutInflowsNestedInput>;
+  job?: InputMaybe<JobUpdateOneWithoutInflowsNestedInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutInflowsNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
 };
@@ -600,8 +514,8 @@ export type InflowWhereInput = {
   facility?: InputMaybe<FacilityRelationFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
-  job?: InputMaybe<JobRelationFilter>;
-  jobId?: InputMaybe<IntFilter>;
+  job?: InputMaybe<JobNullableRelationFilter>;
+  jobId?: InputMaybe<IntNullableFilter>;
   person?: InputMaybe<PersonRelationFilter>;
   personId?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -618,8 +532,8 @@ export type InflowWhereUniqueInput = {
   facility?: InputMaybe<FacilityRelationFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
-  job?: InputMaybe<JobRelationFilter>;
-  jobId?: InputMaybe<IntFilter>;
+  job?: InputMaybe<JobNullableRelationFilter>;
+  jobId?: InputMaybe<IntNullableFilter>;
   person?: InputMaybe<PersonRelationFilter>;
   personId?: InputMaybe<IntFilter>;
   updatedAt?: InputMaybe<DateTimeFilter>;
@@ -688,7 +602,7 @@ export type JobCreateOrConnectWithoutInflowsInput = {
   where: JobWhereUniqueInput;
 };
 
-export type JobRelationFilter = {
+export type JobNullableRelationFilter = {
   is?: InputMaybe<JobWhereInput>;
   isNot?: InputMaybe<JobWhereInput>;
 };
@@ -703,10 +617,12 @@ export type JobUncheckedUpdateWithoutInflowsInput = {
   name?: InputMaybe<StringFieldUpdateOperationsInput>;
 };
 
-export type JobUpdateOneRequiredWithoutInflowsNestedInput = {
+export type JobUpdateOneWithoutInflowsNestedInput = {
   connect?: InputMaybe<JobWhereUniqueInput>;
   connectOrCreate?: InputMaybe<JobCreateOrConnectWithoutInflowsInput>;
   create?: InputMaybe<JobUncheckedCreateWithoutInflowsInput>;
+  delete?: InputMaybe<JobWhereInput>;
+  disconnect?: InputMaybe<JobWhereInput>;
   update?: InputMaybe<JobUncheckedUpdateWithoutInflowsInput>;
   upsert?: InputMaybe<JobUpsertWithoutInflowsInput>;
 };
@@ -741,29 +657,21 @@ export type JobWhereUniqueInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createDocumentType: DocumentType;
   createFacility: Facility;
   createInflow: Inflow;
   createJob: Job;
   createOutflow: Outflow;
   createPerson: Person;
-  deleteDocumentType: Scalars['Boolean']['output'];
   deleteFacility: Scalars['Boolean']['output'];
   deleteInflow: Scalars['Boolean']['output'];
   deleteJob: Scalars['Boolean']['output'];
   deleteOutflow: Scalars['Boolean']['output'];
   deletePerson: Scalars['Boolean']['output'];
-  updateDocumentType?: Maybe<DocumentType>;
   updateFacility?: Maybe<Facility>;
   updateInflow?: Maybe<Inflow>;
   updateJob?: Maybe<Job>;
   updateOutflow?: Maybe<Outflow>;
   updatePerson?: Maybe<Person>;
-};
-
-
-export type MutationCreateDocumentTypeArgs = {
-  data: DocumentTypeCreateInput;
 };
 
 
@@ -792,11 +700,6 @@ export type MutationCreatePersonArgs = {
 };
 
 
-export type MutationDeleteDocumentTypeArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
 export type MutationDeleteFacilityArgs = {
   id: Scalars['Int']['input'];
 };
@@ -818,12 +721,6 @@ export type MutationDeleteOutflowArgs = {
 
 
 export type MutationDeletePersonArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateDocumentTypeArgs = {
-  data: DocumentTypeUpdateSimpleInput;
   id: Scalars['Int']['input'];
 };
 
@@ -947,7 +844,6 @@ export type Outflow = {
   createdAt: Scalars['DateTimeISO']['output'];
   date: Scalars['DateTimeISO']['output'];
   description?: Maybe<Scalars['String']['output']>;
-  documentTypeId?: Maybe<Scalars['Int']['output']>;
   facility: Facility;
   facilityId: Scalars['Int']['output'];
   id: Scalars['Int']['output'];
@@ -960,24 +856,8 @@ export type OutflowApiCreateInput = {
   amount: Scalars['Float']['input'];
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentType: Scalars['Int']['input'];
   facility: Scalars['Int']['input'];
   person: Scalars['Int']['input'];
-};
-
-export type OutflowCreateManyDocumentTypeInput = {
-  amount: Scalars['Float']['input'];
-  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-  date: Scalars['DateTimeISO']['input'];
-  description?: InputMaybe<Scalars['String']['input']>;
-  facilityId: Scalars['Int']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
-  personId: Scalars['Int']['input'];
-  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-};
-
-export type OutflowCreateManyDocumentTypeInputEnvelope = {
-  data: Array<OutflowCreateManyDocumentTypeInput>;
 };
 
 export type OutflowCreateManyFacilityInput = {
@@ -985,7 +865,6 @@ export type OutflowCreateManyFacilityInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentTypeId?: InputMaybe<Scalars['Int']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   personId: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
@@ -1000,7 +879,6 @@ export type OutflowCreateManyPersonInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentTypeId?: InputMaybe<Scalars['Int']['input']>;
   facilityId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
@@ -1008,13 +886,6 @@ export type OutflowCreateManyPersonInput = {
 
 export type OutflowCreateManyPersonInputEnvelope = {
   data: Array<OutflowCreateManyPersonInput>;
-};
-
-export type OutflowCreateNestedManyWithoutDocumentTypeInput = {
-  connect?: InputMaybe<Array<OutflowWhereUniqueInput>>;
-  connectOrCreate?: InputMaybe<Array<OutflowCreateOrConnectWithoutDocumentTypeInput>>;
-  create?: InputMaybe<Array<OutflowCreateWithoutDocumentTypeInput>>;
-  createMany?: InputMaybe<OutflowCreateManyDocumentTypeInputEnvelope>;
 };
 
 export type OutflowCreateNestedManyWithoutFacilityInput = {
@@ -1031,11 +902,6 @@ export type OutflowCreateNestedManyWithoutPersonInput = {
   createMany?: InputMaybe<OutflowCreateManyPersonInputEnvelope>;
 };
 
-export type OutflowCreateOrConnectWithoutDocumentTypeInput = {
-  create: OutflowUncheckedCreateWithoutDocumentTypeInput;
-  where: OutflowWhereUniqueInput;
-};
-
 export type OutflowCreateOrConnectWithoutFacilityInput = {
   create: OutflowUncheckedCreateWithoutFacilityInput;
   where: OutflowWhereUniqueInput;
@@ -1046,22 +912,11 @@ export type OutflowCreateOrConnectWithoutPersonInput = {
   where: OutflowWhereUniqueInput;
 };
 
-export type OutflowCreateWithoutDocumentTypeInput = {
-  amount: Scalars['Float']['input'];
-  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-  date: Scalars['DateTimeISO']['input'];
-  description?: InputMaybe<Scalars['String']['input']>;
-  facility: FacilityCreateNestedOneWithoutOutflowInput;
-  person: PersonCreateNestedOneWithoutOutflowsInput;
-  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-};
-
 export type OutflowCreateWithoutFacilityInput = {
   amount: Scalars['Float']['input'];
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentType?: InputMaybe<DocumentTypeCreateNestedOneWithoutOutflowsInput>;
   person: PersonCreateNestedOneWithoutOutflowsInput;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -1071,7 +926,6 @@ export type OutflowCreateWithoutPersonInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentType?: InputMaybe<DocumentTypeCreateNestedOneWithoutOutflowsInput>;
   facility: FacilityCreateNestedOneWithoutOutflowInput;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
 };
@@ -1090,7 +944,6 @@ export type OutflowScalarWhereInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
   date?: InputMaybe<DateTimeFilter>;
   description?: InputMaybe<StringNullableFilter>;
-  documentTypeId?: InputMaybe<IntNullableFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
   personId?: InputMaybe<IntFilter>;
@@ -1111,23 +964,11 @@ export type OutflowUncheckedCreateNestedManyWithoutPersonInput = {
   createMany?: InputMaybe<OutflowCreateManyPersonInputEnvelope>;
 };
 
-export type OutflowUncheckedCreateWithoutDocumentTypeInput = {
-  amount: Scalars['Float']['input'];
-  createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-  date: Scalars['DateTimeISO']['input'];
-  description?: InputMaybe<Scalars['String']['input']>;
-  facilityId: Scalars['Int']['input'];
-  id?: InputMaybe<Scalars['Int']['input']>;
-  personId: Scalars['Int']['input'];
-  updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
-};
-
 export type OutflowUncheckedCreateWithoutFacilityInput = {
   amount: Scalars['Float']['input'];
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentTypeId?: InputMaybe<Scalars['Int']['input']>;
   id?: InputMaybe<Scalars['Int']['input']>;
   personId: Scalars['Int']['input'];
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
@@ -1138,7 +979,6 @@ export type OutflowUncheckedCreateWithoutPersonInput = {
   createdAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
   date: Scalars['DateTimeISO']['input'];
   description?: InputMaybe<Scalars['String']['input']>;
-  documentTypeId?: InputMaybe<Scalars['Int']['input']>;
   facilityId: Scalars['Int']['input'];
   id?: InputMaybe<Scalars['Int']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTimeISO']['input']>;
@@ -1149,7 +989,6 @@ export type OutflowUncheckedUpdateManyWithoutFacilityInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  documentTypeId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1174,7 +1013,6 @@ export type OutflowUncheckedUpdateManyWithoutPersonInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  documentTypeId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1199,7 +1037,6 @@ export type OutflowUncheckedUpdateWithoutFacilityInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  documentTypeId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
   personId?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1210,7 +1047,6 @@ export type OutflowUncheckedUpdateWithoutPersonInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  documentTypeId?: InputMaybe<NullableIntFieldUpdateOperationsInput>;
   facilityId?: InputMaybe<IntFieldUpdateOperationsInput>;
   id?: InputMaybe<IntFieldUpdateOperationsInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1221,7 +1057,6 @@ export type OutflowUpdateInput = {
   createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   date?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
   description?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
-  documentType?: InputMaybe<DocumentTypeUpdateOneWithoutOutflowsNestedInput>;
   facility?: InputMaybe<FacilityUpdateOneRequiredWithoutOutflowNestedInput>;
   person?: InputMaybe<PersonUpdateOneRequiredWithoutOutflowsNestedInput>;
   updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
@@ -1267,8 +1102,6 @@ export type OutflowWhereInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
   date?: InputMaybe<DateTimeFilter>;
   description?: InputMaybe<StringNullableFilter>;
-  documentType?: InputMaybe<DocumentTypeNullableRelationFilter>;
-  documentTypeId?: InputMaybe<IntNullableFilter>;
   facility?: InputMaybe<FacilityRelationFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<IntFilter>;
@@ -1285,8 +1118,6 @@ export type OutflowWhereUniqueInput = {
   createdAt?: InputMaybe<DateTimeFilter>;
   date?: InputMaybe<DateTimeFilter>;
   description?: InputMaybe<StringNullableFilter>;
-  documentType?: InputMaybe<DocumentTypeNullableRelationFilter>;
-  documentTypeId?: InputMaybe<IntNullableFilter>;
   facility?: InputMaybe<FacilityRelationFilter>;
   facilityId?: InputMaybe<IntFilter>;
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -1450,8 +1281,6 @@ export type PersonWithStatistics = {
 
 export type Query = {
   __typename?: 'Query';
-  documentType?: Maybe<DocumentType>;
-  documentTypes: Array<DocumentType>;
   facilities: Array<Facility>;
   facility?: Maybe<Facility>;
   inflow?: Maybe<Inflow>;
@@ -1465,11 +1294,6 @@ export type Query = {
   person?: Maybe<Person>;
   persons: Array<Person>;
   personsWithStatistics?: Maybe<Array<PersonWithStatistics>>;
-};
-
-
-export type QueryDocumentTypeArgs = {
-  id: Scalars['Int']['input'];
 };
 
 
@@ -1539,40 +1363,6 @@ export type StringNullableFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type GetAllDocumentTypesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetAllDocumentTypesQuery = { __typename?: 'Query', documentTypes: Array<{ __typename?: 'DocumentType', id: number, name: string }> };
-
-export type GetDocumentTypeByIdQueryVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type GetDocumentTypeByIdQuery = { __typename?: 'Query', documentType?: { __typename?: 'DocumentType', id: number, name: string } | null };
-
-export type CreateDocumentTypeMutationVariables = Exact<{
-  data: DocumentTypeCreateInput;
-}>;
-
-
-export type CreateDocumentTypeMutation = { __typename?: 'Mutation', createDocumentType: { __typename?: 'DocumentType', name: string } };
-
-export type UpdateDocumentTypeMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-  data: DocumentTypeUpdateSimpleInput;
-}>;
-
-
-export type UpdateDocumentTypeMutation = { __typename?: 'Mutation', updateDocumentType?: { __typename?: 'DocumentType', id: number, name: string } | null };
-
-export type DeleteDocumentTypeMutationVariables = Exact<{
-  id: Scalars['Int']['input'];
-}>;
-
-
-export type DeleteDocumentTypeMutation = { __typename?: 'Mutation', deleteDocumentType: boolean };
-
 export type GetAllFacilitiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1610,28 +1400,28 @@ export type DeleteFacilityMutation = { __typename?: 'Mutation', deleteFacility: 
 export type GetAllInflowsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllInflowsQuery = { __typename?: 'Query', inflows: Array<{ __typename?: 'Inflow', id: number, personId: number, facilityId: number, jobId: number, amount: number, date: any }> };
+export type GetAllInflowsQuery = { __typename?: 'Query', inflows: Array<{ __typename?: 'Inflow', id: number, personId: number, facilityId: number, jobId?: number | null, amount: number, date: any }> };
 
 export type GetInflowByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type GetInflowByIdQuery = { __typename?: 'Query', inflow?: { __typename?: 'Inflow', id: number, personId: number, facilityId: number, jobId: number, amount: number, date: any } | null };
+export type GetInflowByIdQuery = { __typename?: 'Query', inflow?: { __typename?: 'Inflow', id: number, personId: number, facilityId: number, jobId?: number | null, amount: number, date: any } | null };
 
 export type GetInflowsByPersonIdQueryVariables = Exact<{
   personId: Scalars['Int']['input'];
 }>;
 
 
-export type GetInflowsByPersonIdQuery = { __typename?: 'Query', inflowsByPersonId?: Array<{ __typename?: 'Inflow', id: number, amount: number, date: any, person: { __typename?: 'Person', name: string }, facility: { __typename?: 'Facility', name: string }, job: { __typename?: 'Job', name: string } }> | null };
+export type GetInflowsByPersonIdQuery = { __typename?: 'Query', inflowsByPersonId?: Array<{ __typename?: 'Inflow', id: number, amount: number, date: any, person: { __typename?: 'Person', name: string }, facility: { __typename?: 'Facility', name: string }, job?: { __typename?: 'Job', name: string } | null }> | null };
 
 export type CreateInflowMutationVariables = Exact<{
   data: InflowApiCreateInput;
 }>;
 
 
-export type CreateInflowMutation = { __typename?: 'Mutation', createInflow: { __typename?: 'Inflow', personId: number, facilityId: number, jobId: number, amount: number, date: any } };
+export type CreateInflowMutation = { __typename?: 'Mutation', createInflow: { __typename?: 'Inflow', personId: number, facilityId: number, jobId?: number | null, amount: number, date: any } };
 
 export type UpdateInflowMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1639,7 +1429,7 @@ export type UpdateInflowMutationVariables = Exact<{
 }>;
 
 
-export type UpdateInflowMutation = { __typename?: 'Mutation', updateInflow?: { __typename?: 'Inflow', id: number, personId: number, facilityId: number, jobId: number, amount: number, date: any } | null };
+export type UpdateInflowMutation = { __typename?: 'Mutation', updateInflow?: { __typename?: 'Inflow', id: number, personId: number, facilityId: number, jobId?: number | null, amount: number, date: any } | null };
 
 export type DeleteInflowMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1763,186 +1553,6 @@ export type GetPersonsWithStatisticsQueryVariables = Exact<{ [key: string]: neve
 export type GetPersonsWithStatisticsQuery = { __typename?: 'Query', personsWithStatistics?: Array<{ __typename?: 'PersonWithStatistics', id: number, name: string, totalInflowAmount: number, inflowIds: Array<number>, totalOutflowAmount: number, outflowIds: Array<number> }> | null };
 
 
-export const GetAllDocumentTypesDocument = gql`
-    query GetAllDocumentTypes {
-  documentTypes {
-    id
-    name
-  }
-}
-    `;
-
-/**
- * __useGetAllDocumentTypesQuery__
- *
- * To run a query within a React component, call `useGetAllDocumentTypesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetAllDocumentTypesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetAllDocumentTypesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useGetAllDocumentTypesQuery(baseOptions?: Apollo.QueryHookOptions<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>(GetAllDocumentTypesDocument, options);
-      }
-export function useGetAllDocumentTypesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>(GetAllDocumentTypesDocument, options);
-        }
-export function useGetAllDocumentTypesSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>(GetAllDocumentTypesDocument, options);
-        }
-export type GetAllDocumentTypesQueryHookResult = ReturnType<typeof useGetAllDocumentTypesQuery>;
-export type GetAllDocumentTypesLazyQueryHookResult = ReturnType<typeof useGetAllDocumentTypesLazyQuery>;
-export type GetAllDocumentTypesSuspenseQueryHookResult = ReturnType<typeof useGetAllDocumentTypesSuspenseQuery>;
-export type GetAllDocumentTypesQueryResult = Apollo.QueryResult<GetAllDocumentTypesQuery, GetAllDocumentTypesQueryVariables>;
-export const GetDocumentTypeByIdDocument = gql`
-    query GetDocumentTypeById($id: Int!) {
-  documentType(id: $id) {
-    id
-    name
-  }
-}
-    `;
-
-/**
- * __useGetDocumentTypeByIdQuery__
- *
- * To run a query within a React component, call `useGetDocumentTypeByIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetDocumentTypeByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetDocumentTypeByIdQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useGetDocumentTypeByIdQuery(baseOptions: Apollo.QueryHookOptions<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables> & ({ variables: GetDocumentTypeByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables>(GetDocumentTypeByIdDocument, options);
-      }
-export function useGetDocumentTypeByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables>(GetDocumentTypeByIdDocument, options);
-        }
-export function useGetDocumentTypeByIdSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables>) {
-          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables>(GetDocumentTypeByIdDocument, options);
-        }
-export type GetDocumentTypeByIdQueryHookResult = ReturnType<typeof useGetDocumentTypeByIdQuery>;
-export type GetDocumentTypeByIdLazyQueryHookResult = ReturnType<typeof useGetDocumentTypeByIdLazyQuery>;
-export type GetDocumentTypeByIdSuspenseQueryHookResult = ReturnType<typeof useGetDocumentTypeByIdSuspenseQuery>;
-export type GetDocumentTypeByIdQueryResult = Apollo.QueryResult<GetDocumentTypeByIdQuery, GetDocumentTypeByIdQueryVariables>;
-export const CreateDocumentTypeDocument = gql`
-    mutation CreateDocumentType($data: DocumentTypeCreateInput!) {
-  createDocumentType(data: $data) {
-    name
-  }
-}
-    `;
-export type CreateDocumentTypeMutationFn = Apollo.MutationFunction<CreateDocumentTypeMutation, CreateDocumentTypeMutationVariables>;
-
-/**
- * __useCreateDocumentTypeMutation__
- *
- * To run a mutation, you first call `useCreateDocumentTypeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateDocumentTypeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [createDocumentTypeMutation, { data, loading, error }] = useCreateDocumentTypeMutation({
- *   variables: {
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useCreateDocumentTypeMutation(baseOptions?: Apollo.MutationHookOptions<CreateDocumentTypeMutation, CreateDocumentTypeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateDocumentTypeMutation, CreateDocumentTypeMutationVariables>(CreateDocumentTypeDocument, options);
-      }
-export type CreateDocumentTypeMutationHookResult = ReturnType<typeof useCreateDocumentTypeMutation>;
-export type CreateDocumentTypeMutationResult = Apollo.MutationResult<CreateDocumentTypeMutation>;
-export type CreateDocumentTypeMutationOptions = Apollo.BaseMutationOptions<CreateDocumentTypeMutation, CreateDocumentTypeMutationVariables>;
-export const UpdateDocumentTypeDocument = gql`
-    mutation UpdateDocumentType($id: Int!, $data: DocumentTypeUpdateSimpleInput!) {
-  updateDocumentType(id: $id, data: $data) {
-    id
-    name
-  }
-}
-    `;
-export type UpdateDocumentTypeMutationFn = Apollo.MutationFunction<UpdateDocumentTypeMutation, UpdateDocumentTypeMutationVariables>;
-
-/**
- * __useUpdateDocumentTypeMutation__
- *
- * To run a mutation, you first call `useUpdateDocumentTypeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateDocumentTypeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [updateDocumentTypeMutation, { data, loading, error }] = useUpdateDocumentTypeMutation({
- *   variables: {
- *      id: // value for 'id'
- *      data: // value for 'data'
- *   },
- * });
- */
-export function useUpdateDocumentTypeMutation(baseOptions?: Apollo.MutationHookOptions<UpdateDocumentTypeMutation, UpdateDocumentTypeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateDocumentTypeMutation, UpdateDocumentTypeMutationVariables>(UpdateDocumentTypeDocument, options);
-      }
-export type UpdateDocumentTypeMutationHookResult = ReturnType<typeof useUpdateDocumentTypeMutation>;
-export type UpdateDocumentTypeMutationResult = Apollo.MutationResult<UpdateDocumentTypeMutation>;
-export type UpdateDocumentTypeMutationOptions = Apollo.BaseMutationOptions<UpdateDocumentTypeMutation, UpdateDocumentTypeMutationVariables>;
-export const DeleteDocumentTypeDocument = gql`
-    mutation DeleteDocumentType($id: Int!) {
-  deleteDocumentType(id: $id)
-}
-    `;
-export type DeleteDocumentTypeMutationFn = Apollo.MutationFunction<DeleteDocumentTypeMutation, DeleteDocumentTypeMutationVariables>;
-
-/**
- * __useDeleteDocumentTypeMutation__
- *
- * To run a mutation, you first call `useDeleteDocumentTypeMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDeleteDocumentTypeMutation` returns a tuple that includes:
- * - A mutate function that you can call at any time to execute the mutation
- * - An object with fields that represent the current status of the mutation's execution
- *
- * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
- *
- * @example
- * const [deleteDocumentTypeMutation, { data, loading, error }] = useDeleteDocumentTypeMutation({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useDeleteDocumentTypeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteDocumentTypeMutation, DeleteDocumentTypeMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteDocumentTypeMutation, DeleteDocumentTypeMutationVariables>(DeleteDocumentTypeDocument, options);
-      }
-export type DeleteDocumentTypeMutationHookResult = ReturnType<typeof useDeleteDocumentTypeMutation>;
-export type DeleteDocumentTypeMutationResult = Apollo.MutationResult<DeleteDocumentTypeMutation>;
-export type DeleteDocumentTypeMutationOptions = Apollo.BaseMutationOptions<DeleteDocumentTypeMutation, DeleteDocumentTypeMutationVariables>;
 export const GetAllFacilitiesDocument = gql`
     query GetAllFacilities {
   facilities {

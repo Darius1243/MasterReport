@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
 import { FormEventHandler, KeyboardEvent } from 'react'
 import { FormProvider } from 'react-hook-form'
-import { Button } from '../mui/Button'
+import { Button } from '../Button'
 
 interface IFormProps {
 	methods: any
@@ -44,6 +44,7 @@ export const CustomForm = ({
 					display={'flex'}
 					alignItems={'center'}
 					justifyContent={'space-between'}
+					sx={{ mt: 2 }}
 				>
 					<Button
 						label={'save'}

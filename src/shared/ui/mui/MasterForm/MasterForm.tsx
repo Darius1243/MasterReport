@@ -1,13 +1,13 @@
 import { useGetDefaultValues, useYupValidationResolver } from '@/shared/hooks'
+import { useAutoFocus } from '@/shared/hooks/useAutoFocus'
 import { isEmpty } from '@/shared/libs'
 import { IWidget } from '@/shared/model/types'
 import { TValue } from '@/shared/model/types/TValue'
-import { useEffect } from 'react'
 import { useForm, UseFormReturn } from 'react-hook-form'
-import { ErrorBoundary } from '../boundary'
-import { RenderInputFields } from '../mui/MasterForm'
-import { generateValidations } from '../mui/MasterForm/generateValidations'
+import { ErrorBoundary } from '../../boundary'
+import { ContainerRenderInputFields } from './ContainerRenderInputFields'
 import { CustomForm } from './CustomForm'
+import { generateValidations } from './generateValidations'
 import { onSubmit } from './lib'
 
 type FormData = Record<string, number | string | boolean>
@@ -48,14 +48,12 @@ export const MasterForm = ({
 		defaultValues: useGetDefaultValues(fields, data),
 	})
 
-	useEffect(() => {
-		if (!isEmpty(data) && !!data) setData(data, methods)
-	}, [data, methods])
-
 	const {
 		formState: { dirtyFields, errors, isValid: _isValid },
 		handleSubmit,
 	} = methods
+
+	useAutoFocus(methods, data, setData, fields)
 
 	const isDirty = !isEmpty(dirtyFields)
 	const isValid = !isLoading && _isValid && isEmpty(errors)
@@ -81,7 +79,7 @@ export const MasterForm = ({
 				isVisible={isVisible}
 				additionalChildren={children}
 			>
-				<RenderInputFields fields={fields} isLoading={isLoading} />
+				<ContainerRenderInputFields fields={fields} isLoading={isLoading} />
 			</CustomForm>
 		</ErrorBoundary>
 	)
