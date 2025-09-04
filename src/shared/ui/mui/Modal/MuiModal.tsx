@@ -1,6 +1,12 @@
 import { BORDER_RADIUS } from '@/shared/model/constants'
-import { Box, Fade, Modal, ModalProps, Stack, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Dialog from '@mui/material/Dialog'
+import Fade from '@mui/material/Fade'
+import Modal, { ModalProps } from '@mui/material/Modal'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import { t } from 'i18next'
+import { memo } from 'react'
 import { ErrorBoundaryForComponent } from '../../boundary'
 import { IconButton } from '../Button'
 
@@ -10,33 +16,67 @@ interface IMuiModalProps extends ModalProps {
 	isHeightByContent?: boolean
 	isFullScreen?: boolean
 	isCloseOverseas?: boolean
-	children: React.ReactNode
 }
 
-export const MuiModal = ({
-	title,
-	open,
-	onClose,
-	isSizeByContent,
-	isHeightByContent,
-	isFullScreen,
-	isCloseOverseas,
-	children,
-}: IMuiModalProps) => {
-	return (
-		<Modal open={open} onClose={onClose} aria-hidden={!open}>
+export const MuiModal = memo(
+	({
+		title,
+		open,
+		onClose,
+		isSizeByContent,
+		isHeightByContent,
+		isCloseOverseas,
+		isFullScreen,
+		children,
+	}: IMuiModalProps) => {
+		const content = (
+			<Content
+				isSizeByContent={isSizeByContent}
+				isHeightByContent={isHeightByContent}
+				isCloseOverseas={isCloseOverseas}
+				title={title}
+				open={open}
+				onClose={onClose}
+				isFullScreen={isFullScreen}
+				children={children}
+			/>
+		)
+
+		return isFullScreen ? (
+			<Dialog open={open} onClose={onClose} fullScreen={isFullScreen}>
+				{content}
+			</Dialog>
+		) : (
+			<Modal open={open} onClose={onClose} aria-hidden={!open}>
+				{content}
+			</Modal>
+		)
+	}
+)
+
+const Content = memo(
+	({
+		isSizeByContent,
+		isHeightByContent,
+		isCloseOverseas,
+		title,
+		open,
+		onClose,
+		isFullScreen,
+		children,
+	}: IMuiModalProps) => {
+		return (
 			<Fade in={open}>
 				<Box
-					sx={{
-						...style,
-						height:
-							isSizeByContent || isHeightByContent
-								? 'auto'
-								: isFullScreen
-								? '98%'
-								: '90%',
-						width: isSizeByContent ? 'auto' : isFullScreen ? '99%' : '95%',
-					}}
+					sx={
+						!isFullScreen
+							? {
+									...style,
+									height: isSizeByContent || isHeightByContent ? 'auto' : '90%',
+									width: isSizeByContent ? 'auto' : '95%',
+							  }
+							: null
+					}
 				>
 					<Stack display={'flex'} gap={0} width={'100%'} height={'100%'}>
 						{isCloseOverseas ? null : (
@@ -56,6 +96,9 @@ export const MuiModal = ({
 										onClick={onClose}
 										icon={'CloseIcon'}
 										size={'medium'}
+										sx={{
+											zIndex: 1,
+										}}
 									/>
 								</Box>
 							</Box>
@@ -67,9 +110,9 @@ export const MuiModal = ({
 					</Stack>
 				</Box>
 			</Fade>
-		</Modal>
-	)
-}
+		)
+	}
+)
 
 const style = {
 	position: 'absolute',

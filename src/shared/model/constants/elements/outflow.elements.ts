@@ -6,6 +6,7 @@ import {
 	PERSON_FIELD,
 } from '@/shared/common'
 import { IWidget } from '../../types'
+import { DOCUMENT_TYPES } from '../constants'
 
 export const OutflowElements: IWidget = {
 	fields: {
@@ -22,10 +23,10 @@ export const OutflowElements: IWidget = {
 			labelKeys: { rootLabel: 'name' },
 			required: true,
 			options: [
-				{ id: 1, name: 'Кассовый чек', code: 'check' },
-				{ id: 2, name: 'Без чека', code: 'noCheck' },
-				{ id: 3, name: 'Счет фактура', code: 'invoice' },
-				{ id: 4, name: 'Накладная', code: 'waybill' },
+				{ id: 1, name: 'Кассовый чек', code: DOCUMENT_TYPES.CHECK },
+				{ id: 2, name: 'Без чека', code: DOCUMENT_TYPES.NO_CHECK },
+				{ id: 3, name: 'Счет фактура', code: DOCUMENT_TYPES.INVOICE },
+				{ id: 4, name: 'Накладная', code: DOCUMENT_TYPES.WAYBILL },
 			],
 		},
 	},

@@ -24,6 +24,8 @@ import MenuIcon from '@mui/icons-material/Menu'
 import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import NorthEastIcon from '@mui/icons-material/NorthEast'
+import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined'
+import RefreshIcon from '@mui/icons-material/Refresh'
 import RemoveIcon from '@mui/icons-material/Remove'
 import ReorderIcon from '@mui/icons-material/Reorder'
 import RestartAltIcon from '@mui/icons-material/RestartAlt'
@@ -53,6 +55,10 @@ export const getIcon = (
 	switch (icon) {
 		case 'Apps':
 			return <></>
+		case 'PhotoIcon':
+			return <PhotoOutlinedIcon />
+		case 'RefreshIcon':
+			return <RefreshIcon />
 		case 'ArrowUpwardIcon':
 			return <ArrowUpwardIcon />
 		case 'ArrowDownwardIcon':

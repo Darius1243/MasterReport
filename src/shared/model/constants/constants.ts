@@ -1,6 +1,8 @@
 export const BORDER_RADIUS = '1rem'
 export const LOADING_DELAY = 300
 
+export const QR_CODE_REGION_ID = 'html5qr-code-full-region'
+
 export const STRING = 'string'
 export const NUMBER = 'number'
 export const PHONE = 'phone'
@@ -43,3 +45,12 @@ export const NAV_MENU_ITEMS = [
 	{ primary: 'outflow', to: '/outflow', icon: 'OutflowIcon' },
 	{ primary: 'settings', to: '/settings', icon: 'SettingsIcon' },
 ] as const
+
+export const DOCUMENT_TYPES = {
+	CHECK: 'check',
+	NO_CHECK: 'noCheck',
+	INVOICE: 'invoice',
+	WAYBILL: 'waybill',
+} as const
+
+export type TDocumentType = (typeof DOCUMENT_TYPES)[keyof typeof DOCUMENT_TYPES]

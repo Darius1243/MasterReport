@@ -25,9 +25,14 @@ export const BaseButton = ({
 			<Button
 				disabled={isDisabled}
 				type={'button'}
-				size={'small'}
 				startIcon={label ? getIcon(icon) : null}
-				sx={{ minWidth: '35px', borderRadius: BORDER_RADIUS, ...sx }}
+				sx={{
+					minWidth: '35px',
+					borderRadius: BORDER_RADIUS,
+					px: 2,
+					py: 1,
+					...sx,
+				}}
 				onClick={e => (isLoading ? props.onClick?.(e) : undefined)}
 				loading={isLoading}
 				{...props}

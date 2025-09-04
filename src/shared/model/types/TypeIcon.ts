@@ -1,6 +1,8 @@
 export type TypeIcon =
+	| 'PhotoIcon'
 	| 'InflowIcon'
 	| 'OutflowIcon'
+	| 'RefreshIcon'
 	| 'Apps'
 	| 'ArrowUpwardIcon'
 	| 'ArrowDownwardIcon'
