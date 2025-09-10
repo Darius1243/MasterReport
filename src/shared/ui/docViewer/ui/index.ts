@@ -1,1 +1,3 @@
-export { DocViewer } from './DocViewer'
+export * from './AddFileForm'
+export * from './DocViewer'
+export * from './File'

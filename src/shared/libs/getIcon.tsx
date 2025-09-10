@@ -25,6 +25,8 @@ import EditIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import NorthEastIcon from '@mui/icons-material/NorthEast'
 import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined'
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined'
+import QrCodeScannerOutlinedIcon from '@mui/icons-material/QrCodeScannerOutlined'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import RemoveIcon from '@mui/icons-material/Remove'
 import ReorderIcon from '@mui/icons-material/Reorder'
@@ -55,6 +57,10 @@ export const getIcon = (
 	switch (icon) {
 		case 'Apps':
 			return <></>
+		case 'PostAddOutlinedIcon':
+			return <PostAddOutlinedIcon />
+		case 'QrCodeScannerIcon':
+			return <QrCodeScannerOutlinedIcon />
 		case 'PhotoIcon':
 			return <PhotoOutlinedIcon />
 		case 'RefreshIcon':

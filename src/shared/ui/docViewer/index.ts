@@ -1,1 +1,1 @@
-export * from './ui/DocViewer'
+export * from './ui'

@@ -18,7 +18,7 @@ export const Outflow = () => {
 				isLoading={isLoading}
 			/>
 
-			<DocViewer documentType={'check'} />
+			<DocViewer />
 		</>
 	)
 }

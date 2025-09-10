@@ -6,72 +6,73 @@ import Typography from '@mui/material/Typography'
 import { useTranslation } from 'react-i18next'
 
 interface IMuiCardProps {
-	title?: string
-	actions?: React.ReactNode
-	children: React.ReactNode
-	cardProps?: CardProps
-	cardContentProps?: CardContentProps
-	enablePaddingBottom?: boolean
+    title?: string
+    actions?: React.ReactNode
+    children: React.ReactNode
+    cardProps?: CardProps
+    cardContentProps?: CardContentProps
+    enablePaddingBottom?: boolean
 }
 
 export const MuiCard = ({
-	title,
-	actions,
-	cardProps,
-	cardContentProps,
-	enablePaddingBottom = false,
-	children,
+    title,
+    actions,
+    cardProps,
+    cardContentProps,
+    enablePaddingBottom = false,
+    children,
 }: IMuiCardProps) => {
-	const { t } = useTranslation()
+    const { t } = useTranslation()
 
-	return (
-		<Card
-			{...cardProps}
-			sx={{
-				borderRadius: BORDER_RADIUS,
-				flex: 1,
-				minHeight: 0,
-				display: 'flex',
-				flexDirection: 'column',
-				...cardProps?.sx,
-			}}
-		>
-			{title || actions ? (
-				<Box
-					display={'flex'}
-					justifyContent={'space-between'}
-					alignItems={'center'}
-					px={3}
-					pt={1}
-				>
-					{title ? (
-						<Typography
-							variant='h6'
-							component='div'
-							sx={{ fontWeight: 'normal' }}
-						>
-							{t(title)}
-						</Typography>
-					) : null}
+    return (
+        <Card
+            {...cardProps}
+            sx={{
+                borderRadius: BORDER_RADIUS,
+                flex: 1,
+                minHeight: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                ...cardProps?.sx,
+            }}
+        >
+            {title || actions ? (
+                <Box
+                    display={'flex'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    px={3}
+                    pt={1}
+                >
+                    {title ? (
+                        <Typography
+                            variant='h6'
+                            component='div'
+                            sx={{ fontWeight: 'normal' }}
+                        >
+                            {t(title)}
+                        </Typography>
+                    ) : null}
 
-					{actions}
-				</Box>
-			) : null}
+                    {actions}
+                </Box>
+            ) : null}
 
-			<CardContent
-				{...cardContentProps}
-				sx={{
-					py: 0,
-					flex: 1,
-					minHeight: 0,
-					display: 'flex',
-					flexDirection: 'column',
-					...cardContentProps?.sx,
-				}}
-				style={{ paddingBottom: enablePaddingBottom ? 12 : 0 }}
-			>
-				{children}
-			</CardContent>
-		</Card>
-	)
+            <CardContent
+                {...cardContentProps}
+                sx={{
+                    py: 0,
+                    flex: 1,
+                    minHeight: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    overflow: 'auto',
+                    ...cardContentProps?.sx,
+                }}
+                style={{ paddingBottom: enablePaddingBottom ? 12 : 0 }}
+            >
+                {children}
+            </CardContent>
+        </Card>
+    )
 }

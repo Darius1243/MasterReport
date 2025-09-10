@@ -1,4 +1,6 @@
 export type TypeIcon =
+	| 'PostAddOutlinedIcon'
+	| 'QrCodeScannerIcon'
 	| 'PhotoIcon'
 	| 'InflowIcon'
 	| 'OutflowIcon'

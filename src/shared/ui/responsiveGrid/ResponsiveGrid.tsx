@@ -16,7 +16,7 @@ interface IResponsiveGridProps extends Omit<GridProps, 'container' | 'item'> {
 	sx?: SxProps<Theme>
 	sxCardContent?: SxProps<Theme>
 	styleCardContent?: React.CSSProperties
-	label?: string | undefined
+	label?: string
 	minWidth?: string
 	isDisplayNone?: boolean
 	rootComponent?: React.ElementType
@@ -56,7 +56,7 @@ export const ResponsiveGrid = ({
 				overflow: _container ? 'auto' : 'hidden',
 				display: isDisplayNone ? 'none' : container ? 'flex' : 'block',
 				flexWrap: container ? 'wrap' : 'nowrap',
-				alignContent: 'baseline',
+				alignContent: 'flex-start',
 				borderRadius:
 					(container && item) || componentType === 'table'
 						? BORDER_RADIUS
